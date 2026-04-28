@@ -1,0 +1,33 @@
+{
+  "access": {
+    "participant_column": "PARTICIPANTE",
+    "email_column": "E-MAIL",
+    "level_column": "Acesso_Relatório",
+    "diretor_column": "DIRETOR",
+    "diretoria_column": "DIRETORIA",
+    "source_file": "Participantes - Assessment - com diretores.xlsx",
+    "source_sheet": "Planilha1"
+  },
+  "interviews": {
+    "name_column": "Nome do Entrevistado",
+    "competency_column": "COMPETÊNCIA",
+    "notes_column": "NOTAS",
+    "average_column": "MÉDIA GERAL DA COMPETÊNCIA",
+    "source_file": "Planilha_Entrevistas_Competências POWER BI COMPLETO.xlsx",
+    "source_sheet": "Entrevistas"
+  },
+  "facet_groups": [
+    "Determinação",
+    "Energia",
+    "Afetividade",
+    "Controle",
+    "Emocionalidade"
+  ],
+  "pbkdf2_iterations": 200000,
+  "row_counts": {
+    "access": 25,
+    "interviews": 216,
+    "facet": 24,
+    "career": 510
+  }
+}

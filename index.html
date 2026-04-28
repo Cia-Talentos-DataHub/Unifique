@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assessment Unifique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <section id="login-view" class="view">
+    <div class="login-bg-stripes">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="login-card">
+      <div class="brand">
+        <span class="brand-mark">unifique</span>
+        <span class="brand-divider"></span>
+        <span class="brand-product">Assessment</span>
+      </div>
+      <p class="subtitle">Relatório individual de avaliação</p>
+
+      <form id="login-form" autocomplete="off">
+        <label for="participant-select">Nome</label>
+        <select id="participant-select" required>
+          <option value="">Selecione seu nome</option>
+        </select>
+
+        <label for="password-input">Senha</label>
+        <input id="password-input" type="password" required />
+
+        <button type="submit">Entrar</button>
+        <p id="login-error" class="error" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="dashboard-view" class="view" hidden>
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-mark sm">unifique</span>
+        <span class="brand-product sm">Assessment</span>
+      </div>
+
+      <div class="sidebar-header">
+        <h2>Filtros</h2>
+        <button id="logout-btn" class="btn-secondary">Sair</button>
+      </div>
+
+      <div class="filter-group">
+        <label for="participant-filter">Participante</label>
+        <select id="participant-filter"></select>
+      </div>
+
+      <div class="filter-group" id="director-filter-group" hidden>
+        <label for="director-filter">Diretor</label>
+        <select id="director-filter">
+          <option value="">Todos</option>
+        </select>
+      </div>
+
+      <div class="filter-group" id="competency-filter-group" hidden>
+        <label for="competency-filter">Competência</label>
+        <select id="competency-filter">
+          <option value="">Todas</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <h1 id="dashboard-title">Relatório de Assessment</h1>
+          <p id="user-caption" class="caption"></p>
+        </div>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="competencias">Competências</button>
+        <button class="tab-btn" data-tab="entrevista">Entrevista</button>
+        <button class="tab-btn" data-tab="facet">FACET5</button>
+        <button class="tab-btn" data-tab="carreira">Questionário de Carreira</button>
+      </nav>
+
+      <section class="tab-panel active" id="tab-competencias">
+        <div id="competencias-content"></div>
+      </section>
+
+      <section class="tab-panel" id="tab-entrevista">
+        <div id="entrevista-content"></div>
+      </section>
+
+      <section class="tab-panel" id="tab-facet">
+        <div id="facet-content"></div>
+      </section>
+
+      <section class="tab-panel" id="tab-carreira">
+        <div id="carreira-content"></div>
+      </section>
+    </main>
+  </section>
+
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Carregando dados...</p>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+[
+  {
+    "PARTICIPANTE": "Ademar Hasquel",
+    "EMAIL": "ademar.hasquel@redeunifique.com.br",
+    "CARGO": "Gerente Data Center e Infraestrutura de TI",
+    "DIRETOR": "Gabriel Assis Amancio",
+    "DIRETORIA": "Inovação e Transformação Digital",
+    "__access_level__": 3,
+    "__participant_key__": "ademar hasquel",
+    "__password_hash__": {
+      "salt": "0fee438a28402e4222846e76d187b55e",
+      "iterations": 200000,
+      "hash": "6db333e523707d952fb6346b8b03667f2ec06fce597125b39d105f53e9e0dc18"
+    }
+  },
+  {
+    "PARTICIPANTE": "Adriano Struck",
+    "EMAIL": "adriano.struck@redeunifique.com.br",
+    "CARGO": "Gerente Rede",
+    "DIRETOR": null,
+    "DIRETORIA": "Reporte ao Presidente",
+    "__access_level__": 3,
+    "__participant_key__": "adriano struck",
+    "__password_hash__": {
+      "salt": "c25258b83c22f2500b1c7b05889c321e",
+      "iterations": 200000,
+      "hash": "20c67d210dfb46428b21b69e787299489e7422d96977b5354c7ac1e53d4a3045"
+    }
+  },
+  {
+    "PARTICIPANTE": "André José Vicente",
+    "EMAIL": "andre.vicente@redeunifique.com.br",
+    "CARGO": "Gerente Contábil",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "andré josé vicente",
+    "__password_hash__": {
+      "salt": "c2b6a293f6988381bd5f8b73ce6dfd22",
+      "iterations": 200000,
+      "hash": "e52a6f0ff4a6b85dcbfb8ff41b17079f360c46968841a20b1422fc830b9fc1dd"
+    }
+  },
+  {
+    "PARTICIPANTE": "Arthur Hans Kasdorf",
+    "EMAIL": "arthur.hk@redeunifique.com.br",
+    "CARGO": "Gerente Infraestrutura",
+    "DIRETOR": null,
+    "DIRETORIA": "Reporte ao Presidente",
+    "__access_level__": 3,
+    "__participant_key__": "arthur hans kasdorf",
+    "__password_hash__": {
+      "salt": "798f9bc17f72ca68ad6a5901263b80d8",
+      "iterations": 200000,
+      "hash": "6b0525d3bb7f16c961c1db4c812076da5aa7ea766fc372e4f44a143020a257dc"
+    }
+  },
+  {
+    "PARTICIPANTE": "Dieysson José Maciel",
+    "EMAIL": "dieysson.maciel@redeunifique.com.br",
+    "CARGO": "Gerente Nacional B2C",
+    "DIRETOR": "Jair Francisco",
+    "DIRETORIA": "Mercado",
+    "__access_level__": 3,
+    "__participant_key__": "dieysson josé maciel",
+    "__password_hash__": {
+      "salt": "2a5c1bf00191f897852e706128023467",
+      "iterations": 200000,
+      "hash": "acb8238e1cbf4560d0cc15c564859cfdc2c4d1e80bd0536d5917230d5a3d1b1f"
+    }
+  },
+  {
+    "PARTICIPANTE": "Flávio Henrique dos Santos",
+    "EMAIL": "flavio.santos@redeunifique.com.br",
+    "CARGO": "Gerente O&M Geral",
+    "DIRETOR": null,
+    "DIRETORIA": "Reporte ao Presidente",
+    "__access_level__": 3,
+    "__participant_key__": "flávio henrique dos santos",
+    "__password_hash__": {
+      "salt": "cef59a4b32db7dc453be15cef1cbb2e2",
+      "iterations": 200000,
+      "hash": "0fbd8caa558933a7f02b97dea07b7341d7cc0359e6119dcebc124feb35f4235b"
+    }
+  },
+  {
+    "PARTICIPANTE": "Julian Eble",
+    "EMAIL": "julian.eble@redeunifique.com.br",
+    "CARGO": "Gerente Projetos",
+    "DIRETOR": null,
+    "DIRETORIA": "Reporte ao Presidente",
+    "__access_level__": 3,
+    "__participant_key__": "julian eble",
+    "__password_hash__": {
+      "salt": "400080bf7ef1d18b065a5458edcde0c5",
+      "iterations": 200000,
+      "hash": "d444be4b5f20cdca8ae11daced5df0f5e5e36706f30d03eecee0711cfd273e2e"
+    }
+  },
+  {
+    "PARTICIPANTE": "Julio Cesar Conti",
+    "EMAIL": "julio.conti@redeunifique.com.br",
+    "CARGO": "Gerente Administração de Pessoal",
+    "DIRETOR": "Cátia Carla Calliari",
+    "DIRETORIA": "Recursos Humanos",
+    "__access_level__": 3,
+    "__participant_key__": "julio cesar conti",
+    "__password_hash__": {
+      "salt": "6905a01339c9417809e688aeeb07d896",
+      "iterations": 200000,
+      "hash": "33f771a9edb7950754ec086c77399e4811cc771711f76d71b8d4087d7676767f"
+    }
+  },
+  {
+    "PARTICIPANTE": "Kathia Luzia Floriani",
+    "EMAIL": "kathia.floriani@redeunifique.com.br",
+    "CARGO": "Gerente Experiência do Cliente",
+    "DIRETOR": "Aldo Junior Pasqualini",
+    "DIRETORIA": "Marketing",
+    "__access_level__": 3,
+    "__participant_key__": "kathia luzia floriani",
+    "__password_hash__": {
+      "salt": "359959e47127c80b25dcd9a353d74e5b",
+      "iterations": 200000,
+      "hash": "72cda7d73f10ec65f9aaa1adeb839571571943da575962479bceb93160d8c138"
+    }
+  },
+  {
+    "PARTICIPANTE": "Leonardo Peters",
+    "EMAIL": "leonardo.peters@redeunifique.com.br",
+    "CARGO": "Gerente Inovação e Novos Negócios",
+    "DIRETOR": "Gabriel Assis Amancio",
+    "DIRETORIA": "Inovação e Transformação Digital",
+    "__access_level__": 3,
+    "__participant_key__": "leonardo peters",
+    "__password_hash__": {
+      "salt": "ec947b9ab61c14c5722b9cf1175c8e0a",
+      "iterations": 200000,
+      "hash": "ee4b3ac75c05177220958e0f8fe0f610bd3efd2d85367290ca6f62a86aff8b35"
+    }
+  },
+  {
+    "PARTICIPANTE": "Matheus Antonio Zatelli",
+    "EMAIL": "matheus.zatelli@redeunifique.com.br",
+    "CARGO": "Gerente Comunicação e Marketing",
+    "DIRETOR": "Aldo Junior Pasqualini",
+    "DIRETORIA": "Marketing",
+    "__access_level__": 3,
+    "__participant_key__": "matheus antonio zatelli",
+    "__password_hash__": {
+      "salt": "431397af3171d9de045aa41626798f54",
+      "iterations": 200000,
+      "hash": "82939cad1a19d43ea18e602186f3f594d11f3338b6bef27363a3581bf94db7dd"
+    }
+  },
+  {
+    "PARTICIPANTE": "Naiara Cattoni",
+    "EMAIL": "naiara.cattoni@redeunifique.com.br",
+    "CARGO": "Gerente Governança Corporativa",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "naiara cattoni",
+    "__password_hash__": {
+      "salt": "337a1d9f192034c91dc07d4208fcbe06",
+      "iterations": 200000,
+      "hash": "7d55de48dda82f9a521bb87b9509571f2cf126a827777dfa8f00a0f9ca5c47c4"
+    }
+  },
+  {
+    "PARTICIPANTE": "Ricardo Clave da Silveira",
+    "EMAIL": "ricardo.clave@redeunifique.com.br",
+    "CARGO": "Gerente Nacional B2B e B2G",
+    "DIRETOR": "Jair Francisco",
+    "DIRETORIA": "Mercado",
+    "__access_level__": 3,
+    "__participant_key__": "ricardo clave da silveira",
+    "__password_hash__": {
+      "salt": "492b6e78c09ce5492ab99fcb140065a1",
+      "iterations": 200000,
+      "hash": "c9100ec0fc98b7d92e7e23d8d9c2dc093391fd4e8dafceb0a15910d01b736609"
+    }
+  },
+  {
+    "PARTICIPANTE": "Rodrigo Cipriani",
+    "EMAIL": "rodrigo.cipriani@redeunifique.com.br",
+    "CARGO": "Gerente Financeiro",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "rodrigo cipriani",
+    "__password_hash__": {
+      "salt": "09389bcb1a88b6a99ea00b889103f4eb",
+      "iterations": 200000,
+      "hash": "78cd80204aecb3036d3c6233ea085a703b5578145930e0eec68245511557495b"
+    }
+  },
+  {
+    "PARTICIPANTE": "Sergio dos Santos Junior",
+    "EMAIL": "sergio.santos@redeunifique.com.br",
+    "CARGO": "Gerente Mercado",
+    "DIRETOR": "Jair Francisco",
+    "DIRETORIA": "Mercado",
+    "__access_level__": 3,
+    "__participant_key__": "sergio dos santos junior",
+    "__password_hash__": {
+      "salt": "1ad414fd04996ab8a5b6d089644cc885",
+      "iterations": 200000,
+      "hash": "7cd754268801802bb73f6c10278d557325a969ebad1b3d5aa0d371fe3ad3631f"
+    }
+  },
+  {
+    "PARTICIPANTE": "Siegfried Kreutzfeld Neto",
+    "EMAIL": "siegfried.neto@redeunifique.com.br",
+    "CARGO": "Gerente Sistemas",
+    "DIRETOR": "Gabriel Assis Amancio",
+    "DIRETORIA": "Inovação e Transformação Digital",
+    "__access_level__": 3,
+    "__participant_key__": "siegfried kreutzfeld neto",
+    "__password_hash__": {
+      "salt": "43fdeb41aa5a4f924ccbafe31b9df13b",
+      "iterations": 200000,
+      "hash": "e395ab06e8fc8577e2ca9718d6a2e297a5bd0f71d2ce3d541813988381c51eee"
+    }
+  },
+  {
+    "PARTICIPANTE": "Wilson de Alcantra Machado Silva",
+    "EMAIL": "wilson.silva@redeunifique.com.br",
+    "CARGO": "Gerente Assuntos Regulatórios",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "wilson de alcantra machado silva",
+    "__password_hash__": {
+      "salt": "6339b1f09d7c068cc3b20bff350d3c1c",
+      "iterations": 200000,
+      "hash": "1c45b97f2a991add616c3d251f12ce027514e8fc340b17d38967cc30548b940b"
+    }
+  },
+  {
+    "PARTICIPANTE": "Adriana Joice Sandri Osti",
+    "EMAIL": "adriana.osti@redeunifique.com.br",
+    "CARGO": "COORD SAUDE SEGURANCA TRABALHO",
+    "DIRETOR": "Cátia Carla Calliari",
+    "DIRETORIA": "Recursos Humanos",
+    "__access_level__": 3,
+    "__participant_key__": "adriana joice sandri osti",
+    "__password_hash__": {
+      "salt": "2c090765ccbdbf9d8e8bb2a1e60d8f65",
+      "iterations": 200000,
+      "hash": "0950fee416492c043862c447e4b4a5fc606bb4cfca06d72a19caae24b71754f9"
+    }
+  },
+  {
+    "PARTICIPANTE": "Rubia Camila Richter",
+    "EMAIL": "rubia.richter@redeunifique.com.br",
+    "CARGO": "COORD DESENV CULTURA E PERFOR",
+    "DIRETOR": "Cátia Carla Calliari",
+    "DIRETORIA": "Recursos Humanos",
+    "__access_level__": 3,
+    "__participant_key__": "rubia camila richter",
+    "__password_hash__": {
+      "salt": "9bcef290e50d2ce8575cdfb4b441c882",
+      "iterations": 200000,
+      "hash": "8cb2630a7709248c65705b9e7cb7f16e0c97e355be93e9afb1f430ef409aad70"
+    }
+  },
+  {
+    "PARTICIPANTE": "ANA PAULA DE OLIVEIRA CALDAS",
+    "EMAIL": "ana.oliveira@redeunifique.com.br",
+    "CARGO": "LIDER RECRUTAMENTO E SELECAO",
+    "DIRETOR": "Cátia Carla Calliari",
+    "DIRETORIA": "Recursos Humanos",
+    "__access_level__": 3,
+    "__participant_key__": "ana paula de oliveira caldas",
+    "__password_hash__": {
+      "salt": "505a212b11d0c1128dfc330d6339938e",
+      "iterations": 200000,
+      "hash": "37c67b3bd708e08f69fc6728679c4b427efb7a9c2f072cd6b7d39c6e5cc18079"
+    }
+  },
+  {
+    "PARTICIPANTE": "Gabriel Assis Amancio",
+    "EMAIL": null,
+    "CARGO": "DIRETOR",
+    "DIRETOR": null,
+    "DIRETORIA": null,
+    "__access_level__": 2,
+    "__participant_key__": "gabriel assis amancio",
+    "__password_hash__": {
+      "salt": "d6ff2eb4e01c86a305e10c2a25def315",
+      "iterations": 200000,
+      "hash": "293a5d94c400e160928d2ea9dee1cf216a45b6299ff26a2f1ddd7a73e36165e0"
+    }
+  },
+  {
+    "PARTICIPANTE": "Luiz Bogo Jr",
+    "EMAIL": null,
+    "CARGO": "DIRETOR",
+    "DIRETOR": null,
+    "DIRETORIA": null,
+    "__access_level__": 2,
+    "__participant_key__": "luiz bogo jr",
+    "__password_hash__": {
+      "salt": "356374506e748f9c3827080884818911",
+      "iterations": 200000,
+      "hash": "b9424f39491b9deb755bdcc7705f1db0c26253afc837b800463b323920a31fc0"
+    }
+  },
+  {
+    "PARTICIPANTE": "Jair Francisco",
+    "EMAIL": null,
+    "CARGO": "DIRETOR",
+    "DIRETOR": null,
+    "DIRETORIA": null,
+    "__access_level__": 2,
+    "__participant_key__": "jair francisco",
+    "__password_hash__": {
+      "salt": "2a41e713b47995005c44eb825c9d6458",
+      "iterations": 200000,
+      "hash": "6cc90200f7620efe56a2fcc088b0bad4367ca00dbc119844a30261dfeef8815d"
+    }
+  },
+  {
+    "PARTICIPANTE": "Cátia Carla Calliari",
+    "EMAIL": null,
+    "CARGO": "DIRETOR",
+    "DIRETOR": null,
+    "DIRETORIA": null,
+    "__access_level__": 1,
+    "__participant_key__": "cátia carla calliari",
+    "__password_hash__": {
+      "salt": "a251c5397f420877a670120f710da1e5",
+      "iterations": 200000,
+      "hash": "3552bc8f4cdc45b06336e4c115996dddddce16275ca3d737fda9dc8dd8c70fd2"
+    }
+  },
+  {
+    "PARTICIPANTE": "Aldo Junior Pasqualini",
+    "EMAIL": null,
+    "CARGO": "DIRETOR",
+    "DIRETOR": null,
+    "DIRETORIA": null,
+    "__access_level__": 2,
+    "__participant_key__": "aldo junior pasqualini",
+    "__password_hash__": {
+      "salt": "c3767e935846fdbd9cd0aaf499f3a394",
+      "iterations": 200000,
+      "hash": "527cc12a560f93c4c6d7d1207c79769581f1086fcf437f448ab98dc90dfb7077"
+    }
+  }
+]
