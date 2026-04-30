@@ -64,19 +64,12 @@ export function renderCompetencias(container, interviews, focusName) {
     return;
   }
 
-  // KPIs
+  // KPI único: Participantes
   const kpiRow = document.createElement("div");
   kpiRow.className = "kpi-row";
   const numParticipantes = new Set(records.map((r) => r.Participante)).size;
-  const numCompetencias = new Set(records.map((r) => r.Competencia).filter(Boolean)).size;
-  const notas = records.map((r) => r.Nota).filter((n) => typeof n === "number");
-  const mediaGeral = mean(notas);
-
   kpiRow.innerHTML = `
     <div class="kpi"><div class="kpi-label">Participantes</div><div class="kpi-value">${formatNumberBR(numParticipantes)}</div></div>
-    <div class="kpi"><div class="kpi-label">Competências avaliadas</div><div class="kpi-value">${formatNumberBR(numCompetencias)}</div></div>
-    <div class="kpi"><div class="kpi-label">Média geral</div><div class="kpi-value">${mediaGeral === null ? "—" : formatNumberBR(mediaGeral, 2)}</div></div>
-    <div class="kpi"><div class="kpi-label">Linhas</div><div class="kpi-value">${formatNumberBR(records.length)}</div></div>
   `;
   container.appendChild(kpiRow);
 
@@ -130,61 +123,57 @@ export function renderCompetencias(container, interviews, focusName) {
     {
       ...PLOT_LAYOUT,
       margin: { l: 60, r: 24, t: 24, b: 120, autoexpand: true },
-      xaxis: { automargin: true, tickangle: -25 },
+      xaxis: { automargin: true, tickangle: 0 },
       yaxis: { title: "Nota", range: [0, Math.max(5, ...valores) + 0.8], automargin: true },
     },
     PLOT_CONFIG
   );
 
-  // Modo "todos": gráfico 2 = ranking por participante
-  if (!focusName) {
-    const card2 = makeCard("Média geral por participante");
-    chartRow.appendChild(card2);
-
-    const byPart = new Map();
-    for (const r of records) {
-      const v = typeof r.Nota === "number" ? r.Nota : (typeof r.MediaCompetencia === "number" ? r.MediaCompetencia : null);
-      if (v === null) continue;
-      const list = byPart.get(r.Participante) || [];
-      list.push(v);
-      byPart.set(r.Participante, list);
-    }
-
-    const ranking = Array.from(byPart, ([nome, vs]) => ({ nome, m: mean(vs) }))
-      .filter((x) => x.m !== null)
-      .sort((a, b) => b.m - a.m);
-
-    if (ranking.length) {
-      ranking.reverse(); // pra ascending no gráfico horizontal
-      // altura dinamica: 32px por barra, minimo 380, max 900
-      const heightNeeded = Math.min(900, Math.max(380, ranking.length * 32 + 80));
-      const target = card2.querySelector(".plot-target");
-      target.style.height = heightNeeded + "px";
-      target.style.minHeight = heightNeeded + "px";
-
-      Plotly.newPlot(
-        target,
-        [{
-          type: "bar",
-          orientation: "h",
-          x: ranking.map((r) => r.m),
-          y: ranking.map((r) => r.nome),
-          marker: { color: UNI_CYAN },
-          text: ranking.map((r) => r.m.toFixed(2)),
-          textposition: "outside",
-          cliponaxis: false,
-        }],
-        {
-          ...PLOT_LAYOUT,
-          margin: { l: 220, r: 60, t: 24, b: 50, autoexpand: true },
-          xaxis: { title: "Nota média", automargin: true, range: [0, Math.max(5, ...ranking.map((r) => r.m)) + 0.5] },
-          yaxis: { automargin: true },
-        },
-        PLOT_CONFIG
-      );
-    }
-  }
   container.appendChild(chartRow);
+
+  // Modo "todos": gráfico comparativo - barras agrupadas (1 trace por participante, x=competências)
+  if (!focusName) {
+    const card2 = makeCard("Comparativo por participante");
+    const chartRow2 = document.createElement("div");
+    chartRow2.className = "chart-row";
+    chartRow2.appendChild(card2);
+    container.appendChild(chartRow2);
+
+    const partsList = Array.from(new Set(records.map((r) => r.Participante).filter(Boolean))).sort();
+    const traces = partsList.map((p, idx) => {
+      const ys = competencias.map((c) => {
+        const rs = records.filter((r) => r.Participante === p && r.Competencia === c);
+        const vs = rs.map((r) => typeof r.Nota === "number" ? r.Nota : (typeof r.MediaCompetencia === "number" ? r.MediaCompetencia : null)).filter((v) => v !== null);
+        return vs.length ? mean(vs) : null;
+      });
+      return {
+        type: "bar",
+        name: p,
+        x: competencias,
+        y: ys,
+      };
+    });
+
+    // Altura aumenta um pouco se tiver muitos participantes (legenda fica grande)
+    const target = card2.querySelector(".plot-target");
+    const h = Math.min(700, Math.max(420, 380 + Math.ceil(partsList.length / 4) * 22));
+    target.style.height = h + "px";
+    target.style.minHeight = h + "px";
+
+    Plotly.newPlot(
+      target,
+      traces,
+      {
+        ...PLOT_LAYOUT,
+        barmode: "group",
+        margin: { l: 60, r: 24, t: 24, b: 60, autoexpand: true },
+        xaxis: { automargin: true, tickangle: 0 },
+        yaxis: { title: "Nota", range: [0, 10], automargin: true },
+        legend: { orientation: "h", y: -0.15, x: 0, xanchor: "left", font: { size: 11 } },
+      },
+      PLOT_CONFIG
+    );
+  }
 
   // Tabela
   if (!focusName) {
@@ -229,16 +218,6 @@ export function renderEntrevista(container, interviews, focusName, competencyFil
   if (!records.length) {
     infoMsg(container, "Sem entrevistas para os filtros atuais.");
     return;
-  }
-
-  // Aviso se Respostas/Conclusoes estão vazias
-  const haveAns = records.some((r) => r.Respostas);
-  const haveConc = records.some((r) => r.Conclusoes);
-  if (!haveAns && !haveConc) {
-    const warn = document.createElement("div");
-    warn.className = "banner warn";
-    warn.textContent = "Esta planilha de Entrevista ainda está com Respostas/Conclusões em branco. As perguntas e indicadores são exibidos abaixo, mas o conteúdo das respostas só vai aparecer depois que a planilha for preenchida.";
-    container.appendChild(warn);
   }
 
   // Agrupa por participante > competencia > [linhas com perguntas/respostas/notas]
@@ -294,58 +273,18 @@ export function renderEntrevista(container, interviews, focusName, competencyFil
         compBlock.appendChild(ind);
       }
 
-      // Conclusao geral da competencia (so 1 valor; pega o primeiro nao-nulo)
+      // Conclusões gerais sobre o participante (por competência)
       const conclusao = rows.map((r) => r.Conclusoes).find((v) => v);
+      const c = document.createElement("div");
+      c.className = "entrevista-field";
       if (conclusao) {
-        const c = document.createElement("div");
-        c.className = "entrevista-field";
-        c.innerHTML = `<div class="field-label">Conclusões gerais</div><div class="field-value">${escapeHtml(conclusao).replace(/\n/g, "<br>")}</div>`;
-        compBlock.appendChild(c);
+        c.innerHTML = `<div class="field-label">Conclusões gerais sobre o participante</div><div class="field-value">${escapeHtml(conclusao).replace(/\n/g, "<br>")}</div>`;
+      } else {
+        c.innerHTML = `<div class="field-label">Conclusões gerais sobre o participante</div><div class="field-value muted">— ainda sem conclusões registradas —</div>`;
       }
-
-      // Cada pergunta com sua resposta + nota
-      const qBlock = document.createElement("div");
-      qBlock.className = "entrevista-questions";
-      for (const r of rows) {
-        if (!r.Perguntas) continue;
-        const q = document.createElement("div");
-        q.className = "entrevista-question";
-        const note = (typeof r.Nota === "number")
-          ? `<span class="badge small">Nota ${r.Nota.toFixed(1)}</span>` : "";
-        q.innerHTML = `<div class="q-pergunta">${escapeHtml(r.Perguntas).replace(/\n/g, "<br>")} ${note}</div>` +
-          (r.Respostas
-            ? `<div class="q-resposta">${escapeHtml(r.Respostas).replace(/\n/g, "<br>")}</div>`
-            : `<div class="q-resposta muted">— sem resposta cadastrada —</div>`);
-        qBlock.appendChild(q);
-      }
-      compBlock.appendChild(qBlock);
+      compBlock.appendChild(c);
 
       block.appendChild(compBlock);
-    }
-
-    container.appendChild(block);
-  }
-  return;
-
-  // (codigo antigo abaixo nao executa mais)
-  // eslint-disable-next-line no-unreachable
-  for (const [participante, rows] of new Map()) {
-    for (const r of rows) {
-      const fields = [
-        ["Indicadores", r.Indicadores],
-        ["Perguntas", r.Perguntas],
-        ["Respostas", r.Respostas],
-        ["Conclusões gerais", r.Conclusoes],
-      ];
-      for (const [label, val] of fields) {
-        if (!val) continue;
-        const div = document.createElement("div");
-        div.className = "entrevista-field";
-        div.innerHTML = `<div class="field-label">${escapeHtml(label)}</div><div class="field-value">${escapeHtml(val).replace(/\n/g, "<br>")}</div>`;
-        item.appendChild(div);
-      }
-
-      block.appendChild(item);
     }
 
     container.appendChild(block);
@@ -407,14 +346,22 @@ export function renderFacet(container, facetRecords, focusName) {
       PLOT_CONFIG
     );
 
+    // KPIs dos 5 fatores com descricao individual abaixo
     const grid = document.createElement("div");
-    grid.className = "kpi-row";
+    grid.className = "facet-factors-grid";
     for (const f of FACET_FACTORS) {
       const v = r[f];
-      const kpi = document.createElement("div");
-      kpi.className = "kpi";
-      kpi.innerHTML = `<div class="kpi-label">${escapeHtml(f)}</div><div class="kpi-value">${typeof v === "number" ? v.toFixed(1) : "—"}</div>`;
-      grid.appendChild(kpi);
+      const desc = r[`${f}_desc`];
+      const card = document.createElement("div");
+      card.className = "facet-factor-card";
+      card.innerHTML = `
+        <div class="facet-factor-head">
+          <span class="facet-factor-name">${escapeHtml(f)}</span>
+          <span class="facet-factor-score">${typeof v === "number" ? v.toFixed(1) : "—"}</span>
+        </div>
+        <div class="facet-factor-desc">${desc ? escapeHtml(desc) : "<span class='muted'>— sem descrição extraída deste PDF —</span>"}</div>
+      `;
+      grid.appendChild(card);
     }
     container.appendChild(grid);
     return;

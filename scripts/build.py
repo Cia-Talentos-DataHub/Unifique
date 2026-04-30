@@ -292,6 +292,8 @@ def build_facet(input_dir: Path):
         for g in FACET_GROUPS:
             col = find_column(df, [g])
             rec[g] = _to_number(row.get(col)) if col else None
+            desc_col = find_column(df, [f"{g}_desc", f"{g} desc"])
+            rec[f"{g}_desc"] = clean_str(row.get(desc_col)) if desc_col else None
         records.append(rec)
     return records
 
@@ -360,7 +362,9 @@ def build():
         },
     }
     (OUTPUT_DIR / "manifest.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        json.dumps(manifest, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
     print("Build concluído.")
     print(f"  row_counts = {manifest['row_counts']}")

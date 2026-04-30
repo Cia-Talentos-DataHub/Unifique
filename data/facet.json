@@ -5,10 +5,15 @@
     "Perfil": "Estilo reservado, bastante formal | Evita riscos e pode ser resistente a mudanças | Gosta de diretrizes e programações claras | Respeita a hierarquia e o status quo | Pode parecer muito conservador/a",
     "__participant_key__": "ademar hasquel",
     "Determinação": 5.4,
+    "Determinação_desc": "Você tem um estilo de forte determinação, mas tende a agir independentemente de maneira tranqüila e de conseguir que as coisas sejam feitas sem que haja discussões ou alvoroço. Na verdade, é provável que você evite um confronto direto, o que pode causar a impressão, a algumas pessoas, de que você está desistindo.",
     "Energia": 4.7,
+    "Energia_desc": "Seu estilo é moderado no sentido de que você é relativamente amigável, mas não faz nada de especial para se fazer conhecido. Consegue trabalhar sozinho, se necessário, mas, de modo geral, será eficaz em uma equipe. Você não gostaria de ser pressionado e forçado a participar de algo que não o atrai.",
     "Afetividade": 4.2,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 5.7,
-    "Emocionalidade": 4.6
+    "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
+    "Emocionalidade": 4.6,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Adriana Joice Sandri Osti",
@@ -16,10 +21,15 @@
     "Perfil": "Comportamento solidário e afetuoso | Interesse genuíno em outras pessoas e vontade de ajudar | Possui um forte senso de moralidade e responsabilidade | Defenderá outras pessoas e as suportará | Pode negligenciar seus próprios interesses | Arrisca-se assumindo coisas demais | Aprecia o trabalho em equipe e participa bastante | Promove bons relacionamentos no grupo",
     "__participant_key__": "adriana joice sandri osti",
     "Determinação": 1.6,
+    "Determinação_desc": "Você tende a ser muito flexível em suas idéias, evita qualquer forma de discussão e depende bastante dos conselhos e apoio de outras pessoas.Talvez você perceba que é pouco considerado por pessoas mais dominantes e que suas vontades são relegadas.Pode parecer que você aceita tudo com facilidade e que não é exigente.",
     "Energia": 5.5,
+    "Energia_desc": "Seu estilo é moderado no sentido de que você é relativamente amigável, mas não faz nada de especial para se fazer conhecido. Consegue trabalhar sozinho, se necessário, mas, de modo geral, será eficaz em uma equipe. Você não gostaria de ser pressionado e forçado a participar de algo que não o atrai.",
     "Afetividade": 6.2,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 8.1,
-    "Emocionalidade": 9.7
+    "Controle_desc": "Você tem um forte senso de comprometimento moral e de dever. Você é meticuloso e bem organizado, cuidadoso, metódico e ponderado. Alguns podem achar que você é muito conservador e restritivo, talvez um pouco inibido e com expectativas muito bem definidas das outras pessoas.",
+    "Emocionalidade": 9.7,
+    "Emocionalidade_desc": "Seu estilo é razoavelmente volátil, com tendência a reagir aos eventos, mais movido pelas emoções que pela razão. Parece que as coisas lhe atingem e você claramente apresenta fortes alterações de humor. Essas mudanças podem não ser aparentes para outras pessoas, mas são certamente reais para você. Conseqüentemente, pode parecer que você assume uma visão negativa ou pessimista das coisas e que acha difícil enxergar o lado positivo. Outros poderão considerá-lo interessante ou mesmo entusiasmado, mas de alguma maneira volúvel e inconsistente."
   },
   {
     "Participante": "Amadeu Donizete de Brito",
@@ -27,10 +37,15 @@
     "Perfil": "Estilo discreto e reservado | Difícil de fazê-lo/a descontrair-se em grupos sociais | Prefere independência e autonomia | Gosta de trabalhar em uma tarefa definida de cada vez | Pode passar despercebido/a para pessoas mais dominantes | Pode concentrar-se demais em suas próprias preocupações | Oferece material de referência para outras pessoas | Não desviará a atenção do grupo | Trabalha de maneira cuidadosa em seus próprios projetos",
     "__participant_key__": "amadeu donizete de brito",
     "Determinação": 4.8,
+    "Determinação_desc": "Você tem pontos de vista bem firmes e uma senso claro de direção, mas fará de tudo para evitar confrontos e discussões. Como conseqüência, pode parecer que você desistiu e se rendeu em algumas questões, mas, na verdade, há uma determinação subjacente que virá mais à tona quando lhe for permitido trabalhar sozinho.",
     "Energia": 3.7,
+    "Energia_desc": "Você é quieto e reservado, não é particularmente sociável e prefere a companhia de pessoas que conhece. Consegue trabalhar bem em equipe, mas é preciso que você tenha tido tempo para conhecê-los.",
     "Afetividade": 4.5,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 5.5,
-    "Emocionalidade": 7.5
+    "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
+    "Emocionalidade": 7.5,
+    "Emocionalidade_desc": "Apesar de tender parecer positivo para estranhos, aqueles que o conhecem bem provavelmente verão um lado seu mais cauteloso ou até mesmo pessimista. Isso ficará mais aparente sob estresse ou pressão."
   },
   {
     "Participante": "ANA PAULA DE OLIVEIRA CALDAS",
@@ -38,10 +53,15 @@
     "Perfil": "Possui um senso de propósito aguçado | Imaginativo/a e criativo/a, porém pode parecer egocêntrico/a | Conhece a própria mente | Espera que as outras pessoas defendam a si próprias | Coloca as próprias idéias na frente das idéias de outros | Pode parecer pouco solidário/a, insensível, totalmente | Assumirá a liderança para conseguir trabalhar a sua própria",
     "__participant_key__": "ana paula de oliveira caldas",
     "Determinação": 7.7,
+    "Determinação_desc": "Você é forte e determinado, preparado para apresentar um assunto e mostrar claramente sua posição. Entretanto, você não é particularmente franco ou propenso a discussões. Geralmente, tentará ser razoável e ouvir as opiniões alheias.",
     "Energia": 3.7,
+    "Energia_desc": "Você é quieto e reservado, não é particularmente sociável e prefere a companhia de pessoas que conhece. Consegue trabalhar bem em equipe, mas é preciso que você tenha tido tempo para conhecê-los.",
     "Afetividade": 3.3,
+    "Afetividade_desc": "Você é cauteloso com as pessoas, desconfia dos motivos alheios e não sabe exatamente quanto confiar nos outros. As pessoas precisam provar que são capazes para você e até que isso aconteça, você pode se mostrar bastante firme e crítico.",
     "Controle": 5.2,
-    "Emocionalidade": 7.9
+    "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
+    "Emocionalidade": 7.9,
+    "Emocionalidade_desc": "Apesar de ser geralmente capaz de manter-se positivo e confiante, você tem uma tendência a apresentar alguns altos e baixos emocionais. Isso será mais evidente sob estresse, quando você reage às mudanças na situação ao seu redor, talvez nem sempre avaliando as opções com objetividade."
   },
   {
     "Participante": "André José Vicente",
@@ -49,10 +69,15 @@
     "Perfil": "Estilo muito extrovertido e franco | Rápido/a para manifestar-se e expressar opiniões | Voltado/a para objetivos e capaz de se auto-promover | Raciocina com imaginação e abrangência | Pode intimidar pessoas mais quietas, menos 'diretas'",
     "__participant_key__": "andré josé vicente",
     "Determinação": 8.5,
+    "Determinação_desc": "Você é forte e determinado, preparado para apresentar um assunto e mostrar claramente sua posição. Entretanto, você não é particularmente franco ou propenso a discussões. Geralmente, tentará ser razoável e ouvir as opiniões alheias.",
     "Energia": 7.4,
+    "Energia_desc": "Seu estilo é muito positivo e envolvente, bom para lidar com vários coisas ao mesmo tempo. Você trabalha melhor como integrante de uma equipe na qual você pode discutir os tópicos de maneira abrangente e tomar decisões coletivas baseadas nas circunstâncias. Você não é abertamente sociável e prefere a companhia de pessoas que já conhece.",
     "Afetividade": 2.5,
+    "Afetividade_desc": "Você tem uma abordagem bastante pragmática, voltada para os negócios e com ênfase nos resultados práticos e tangíveis. Você tende a colocar suas necessidades acima da dos demais, pode ser bastante duro e não perdoar, além de geralmente questionar os motivos alheios. Algumas pessoas podem achá-lo muito crítico e insensível.",
     "Controle": 4.6,
-    "Emocionalidade": 4.2
+    "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
+    "Emocionalidade": 4.2,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Arthur Hans Kasdorf",
@@ -60,10 +85,15 @@
     "Perfil": "Possui um senso de propósito aguçado | Imaginativo/a e criativo/a, porém pode parecer egocêntrico/a | Conhece a própria mente | Espera que as outras pessoas defendam a si próprias | Coloca as próprias idéias na frente das idéias de outros | Pode parecer pouco solidário/a, insensível, totalmente | Assumirá a liderança para conseguir trabalhar a sua própria",
     "__participant_key__": "arthur hans kasdorf",
     "Determinação": 8.3,
+    "Determinação_desc": "Você é forte e determinado. Depois que se foca em alguma coisa, defenderá fortemente sua posição e entrará em discussões e debates com facilidade. Alguns o verão como uma pessoa teimosa, mas ao final, sempre tentará fazer com que a equipe concorde com você. Você não é do tipo que faz as coisas a sua maneira, independente de tudo e de todos.",
     "Energia": 2.1,
+    "Energia_desc": "Você tende a ser reservado e trabalha melhor quando lhe deixam seu próprio espaço, livre da interferência de outros. Não envolve os demais no seu trabalho e pode ser difícil expressar-se espontaneamente.",
     "Afetividade": 1.6,
+    "Afetividade_desc": "Você tem uma abordagem bastante pragmática, voltada para os negócios e com ênfase nos resultados práticos e tangíveis. Você tende a colocar suas necessidades acima da dos demais, pode ser bastante duro e não perdoar, além de geralmente questionar os motivos alheios. Algumas pessoas podem achá-lo muito crítico e insensível.",
     "Controle": 4.4,
-    "Emocionalidade": 8.1
+    "Controle_desc": "Você não se preocupa particularmente com detalhes e processos, preferindo analisar questões e conceitos mais amplos. Você não é, de maneira alguma, irresponsável, mas também não toma posições fortes e moralistas. Você tende a lidar com os assuntos conforme eles surgem em vez de ficar planejando com antecedência.",
+    "Emocionalidade": 8.1,
+    "Emocionalidade_desc": "Seu estilo é razoavelmente volátil, com tendência a reagir aos eventos, mais movido pelas emoções que pela razão. Parece que as coisas lhe atingem e você claramente apresenta fortes alterações de humor. Essas mudanças podem não ser aparentes para outras pessoas, mas são certamente reais para você. Conseqüentemente, pode parecer que você assume uma visão negativa ou pessimista das coisas e que acha difícil enxergar o lado positivo. Outros poderão considerá-lo interessante ou mesmo entusiasmado, mas de alguma maneira volúvel e inconsistente."
   },
   {
     "Participante": "Charles Gramkow",
@@ -71,10 +101,15 @@
     "Perfil": "Estilo reservado, bastante formal | Evita riscos e pode ser resistente a mudanças | Gosta de diretrizes e programações claras | Respeita a hierarquia e o status quo | Pode parecer muito conservador/a",
     "__participant_key__": "charles gramkow",
     "Determinação": 4.5,
+    "Determinação_desc": "Você tem um estilo de forte determinação, mas tende a agir independentemente de maneira tranqüila e de conseguir que as coisas sejam feitas sem que haja discussões ou alvoroço. Na verdade, é provável que você evite um confronto direto, o que pode causar a impressão, a algumas pessoas, de que você está desistindo.",
     "Energia": 4.2,
+    "Energia_desc": "As pessoas o verão como alguém reservado, que leva um tempo para conhecer as pessoas e que se sente melhor quando está com pessoas que já conhece há algum tempo. Pode parecer que você demora para fazer amizades, mas você trabalhará bem em uma equipe quando lhe é dado tempo para se ajustar. Você precisa de sua privacidade.",
     "Afetividade": 4.9,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 8.7,
-    "Emocionalidade": 6.2
+    "Controle_desc": "Você tem um forte senso de comprometimento moral e de dever. Você é meticuloso e bem organizado, cuidadoso, metódico e ponderado. Alguns podem achar que você é muito conservador e restritivo, talvez um pouco inibido e com expectativas muito bem definidas das outras pessoas.",
+    "Emocionalidade": 6.2,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Danilo Voigt",
@@ -82,10 +117,15 @@
     "Perfil": "Apresenta um estilo reservado, porém cordial | Adapta-se prontamente a qualquer situação | Não se impõe sobre outras pessoas | Tolera os mais diversos estilos | Pode encontrar dificuldade em expressar suas verdadeiras",
     "__participant_key__": "danilo voigt",
     "Determinação": 5.7,
+    "Determinação_desc": "Você tem um estilo de forte determinação, mas tende a agir independentemente de maneira tranqüila e de conseguir que as coisas sejam feitas sem que haja discussões ou alvoroço. Na verdade, é provável que você evite um confronto direto, o que pode causar a impressão, a algumas pessoas, de que você está desistindo.",
     "Energia": 5.0,
+    "Energia_desc": null,
     "Afetividade": 5.9,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 5.0,
-    "Emocionalidade": 5.7
+    "Controle_desc": null,
+    "Emocionalidade": 5.7,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Dieysson José Maciel",
@@ -93,10 +133,15 @@
     "Perfil": "Entusiasmado/a, sociável e divertido/a | Preparado/a para relacionar-se com qualquer pessoa | Exigente, porém flexível | Adapta-se a pessoas ou circunstâncias | Pode representar todas as coisas para todas as pessoas",
     "__participant_key__": "dieysson josé maciel",
     "Determinação": 8.5,
+    "Determinação_desc": "Você é forte e determinado, preparado para apresentar um assunto e mostrar claramente sua posição. Entretanto, você não é particularmente franco ou propenso a discussões. Geralmente, tentará ser razoável e ouvir as opiniões alheias.",
     "Energia": 9.0,
+    "Energia_desc": null,
     "Afetividade": 6.2,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 5.9,
-    "Emocionalidade": 4.2
+    "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
+    "Emocionalidade": 4.2,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Flávio Henrique dos Santos",
@@ -104,10 +149,15 @@
     "Perfil": "Estilo muito extrovertido e franco | Rápido/a para manifestar-se e expressar opiniões | Voltado/a para objetivos e capaz de se auto-promover | Raciocina com imaginação e abrangência | Pode intimidar pessoas mais quietas, menos 'diretas'",
     "__participant_key__": "flávio henrique dos santos",
     "Determinação": 6.2,
+    "Determinação_desc": "Você pode ser bastante teimoso e independente, mas as pessoas podem não perceber isso quando você tenta evitar discussões e age de maneira independente, sem consultar os demais. Em conseqüência disso, é provável que pareça que você esteja recuando para depois prosseguir por si só.",
     "Energia": 5.8,
+    "Energia_desc": "Seu estilo é moderado no sentido de que você é relativamente amigável, mas não faz nada de especial para se fazer conhecido. Consegue trabalhar sozinho, se necessário, mas, de modo geral, será eficaz em uma equipe. Você não gostaria de ser pressionado e forçado a participar de algo que não o atrai.",
     "Afetividade": 2.5,
+    "Afetividade_desc": "Você tem uma abordagem bastante pragmática, voltada para os negócios e com ênfase nos resultados práticos e tangíveis. Você tende a colocar suas necessidades acima da dos demais, pode ser bastante duro e não perdoar, além de geralmente questionar os motivos alheios. Algumas pessoas podem achá-lo muito crítico e insensível.",
     "Controle": 3.5,
-    "Emocionalidade": 5.9
+    "Controle_desc": "Você não se preocupa particularmente com detalhes e processos, preferindo analisar questões e conceitos mais amplos. Você não é, de maneira alguma, irresponsável, mas também não toma posições fortes e moralistas. Você tende a lidar com os assuntos conforme eles surgem em vez de ficar planejando com antecedência.",
+    "Emocionalidade": 5.9,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Julian Eble",
@@ -115,10 +165,15 @@
     "Perfil": "Estilo muito extrovertido e franco | Rápido/a para manifestar-se e expressar opiniões | Voltado/a para objetivos e capaz de se auto-promover | Raciocina com imaginação e abrangência | Pode intimidar pessoas mais quietas, menos 'diretas' | Pode ser avassalador/a e muito rápido | Oferece e mantém contribuições e ímpeto | Adapta-se rapidamente a circunstâncias em transformação | Estimula os outros a ter uma postura positiva",
     "__participant_key__": "julian eble",
     "Determinação": 5.7,
+    "Determinação_desc": "Você tem um estilo de forte determinação, mas tende a agir independentemente de maneira tranqüila e de conseguir que as coisas sejam feitas sem que haja discussões ou alvoroço. Na verdade, é provável que você evite um confronto direto, o que pode causar a impressão, a algumas pessoas, de que você está desistindo.",
     "Energia": 6.6,
+    "Energia_desc": "Sua abordagem principal é conversar com os outros, envolvendo-os no seu raciocínio e tentando chegar a uma decisão coletiva. Você é relativamente extrovertido, apesar de não ser exatamente o centro das atenções - sente-se mais à vontade ao redor de pessoas que conhece.",
     "Afetividade": 2.3,
+    "Afetividade_desc": "Você tem uma abordagem bastante pragmática, voltada para os negócios e com ênfase nos resultados práticos e tangíveis. Você tende a colocar suas necessidades acima da dos demais, pode ser bastante duro e não perdoar, além de geralmente questionar os motivos alheios. Algumas pessoas podem achá-lo muito crítico e insensível.",
     "Controle": 5.0,
-    "Emocionalidade": 3.1
+    "Controle_desc": null,
+    "Emocionalidade": 3.1,
+    "Emocionalidade_desc": "Você tem um estilo muito positivo e confiante e os colegas gostarão da sua capacidade de manter essa postura equilibrada, mesmo quando sob estresse e pressão. Algumas pessoas podem achar ou sentir que você é confiante demais, com poucas coisas que podem derrubá-lo."
   },
   {
     "Participante": "Julio Cesar Conti",
@@ -126,10 +181,15 @@
     "Perfil": "Estilo discreto e reservado | Difícil de fazê-lo/a descontrair-se em grupos sociais | Prefere independência e autonomia | Gosta de trabalhar em uma tarefa definida de cada vez | Pode passar despercebido/a para pessoas mais dominantes",
     "__participant_key__": "julio cesar conti",
     "Determinação": 5.1,
+    "Determinação_desc": "Você tem pontos de vista bem firmes e uma senso claro de direção, mas fará de tudo para evitar confrontos e discussões. Como conseqüência, pode parecer que você desistiu e se rendeu em algumas questões, mas, na verdade, há uma determinação subjacente que virá mais à tona quando lhe for permitido trabalhar sozinho.",
     "Energia": 4.2,
+    "Energia_desc": "Apesar de não ser muito expressivo, você sente-se perfeitamente em casa quando está com pessoas que já teve tempo de conhecer. Com essas pessoas, você age de maneira aberta e participativa, mas sem chegar ao ponto de não conseguir trabalhar sozinho.",
     "Afetividade": 5.4,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 5.0,
-    "Emocionalidade": 7.0
+    "Controle_desc": null,
+    "Emocionalidade": 7.0,
+    "Emocionalidade_desc": null
   },
   {
     "Participante": "Julio Cesar Pessoa",
@@ -137,10 +197,15 @@
     "Perfil": "Estilo muito extrovertido e franco | Rápido/a para manifestar-se e expressar opiniões | Voltado/a para objetivos e capaz de se auto-promover | Raciocina com imaginação e abrangência | Pode intimidar pessoas mais quietas, menos 'diretas'",
     "__participant_key__": "julio cesar pessoa",
     "Determinação": 8.8,
+    "Determinação_desc": "Você é muito determinado, independente e pode ser teimoso. Defende suas opiniões fervorosamente e aprecia debates e discussões abertas. É bom em fortes discussões, onde a força de seu caráter e determinação geralmente vencerão. Mas, se não conseguir convencer as pessoas, está preparado para seguir sozinho.",
     "Energia": 6.3,
+    "Energia_desc": "Seu estilo é moderado no sentido de que você é relativamente amigável, mas não faz nada de especial para se fazer conhecido. Consegue trabalhar sozinho, se necessário, mas, de modo geral, será eficaz em uma equipe. Você não gostaria de ser pressionado e forçado a participar de algo que não o atrai.",
     "Afetividade": 2.0,
+    "Afetividade_desc": null,
     "Controle": 3.5,
-    "Emocionalidade": 5.9
+    "Controle_desc": "Você não se preocupa particularmente com detalhes e processos, preferindo analisar questões e conceitos mais amplos. Você não é, de maneira alguma, irresponsável, mas também não toma posições fortes e moralistas. Você tende a lidar com os assuntos conforme eles surgem em vez de ficar planejando com antecedência.",
+    "Emocionalidade": 5.9,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Leonardo Peters",
@@ -148,10 +213,15 @@
     "Perfil": "Estilo muito extrovertido e franco | Rápido/a para manifestar-se e expressar opiniões | Voltado/a para objetivos e capaz de se auto-promover | Raciocina com imaginação e abrangência | Pode intimidar pessoas mais quietas, menos 'diretas'",
     "__participant_key__": "leonardo peters",
     "Determinação": 8.0,
+    "Determinação_desc": null,
     "Energia": 10.0,
+    "Energia_desc": null,
     "Afetividade": 1.0,
+    "Afetividade_desc": null,
     "Controle": 3.7,
-    "Emocionalidade": 5.1
+    "Controle_desc": "Você não se preocupa particularmente com detalhes e processos, preferindo analisar questões e conceitos mais amplos. Você não é, de maneira alguma, irresponsável, mas também não toma posições fortes e moralistas. Você tende a lidar com os assuntos conforme eles surgem em vez de ficar planejando com antecedência.",
+    "Emocionalidade": 5.1,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Matheus Antonio Zatelli",
@@ -159,10 +229,15 @@
     "Perfil": "Possui um senso de propósito aguçado | Imaginativo/a e criativo/a, porém pode parecer egocêntrico/a | Conhece a própria mente | Espera que as outras pessoas defendam a si próprias | Coloca as próprias idéias na frente das idéias de outros",
     "__participant_key__": "matheus antonio zatelli",
     "Determinação": 9.4,
+    "Determinação_desc": "Você é forte e determinado, preparado para apresentar um assunto e mostrar claramente sua posição. Entretanto, você não é particularmente franco ou propenso a discussões. Geralmente, tentará ser razoável e ouvir as opiniões alheias.",
     "Energia": 3.9,
+    "Energia_desc": "As pessoas o verão como alguém reservado, que leva um tempo para conhecer as pessoas e que se sente melhor quando está com pessoas que já conhece há algum tempo. Pode parecer que você demora para fazer amizades, mas você trabalhará bem em uma equipe quando lhe é dado tempo para se ajustar. Você precisa de sua privacidade.",
     "Afetividade": 2.0,
+    "Afetividade_desc": null,
     "Controle": 2.8,
-    "Emocionalidade": 6.4
+    "Controle_desc": "Você não se preocupa particularmente com detalhes e processos, preferindo analisar questões e conceitos mais amplos. Você não é, de maneira alguma, irresponsável, mas também não toma posições fortes e moralistas. Você tende a lidar com os assuntos conforme eles surgem em vez de ficar planejando com antecedência.",
+    "Emocionalidade": 6.4,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Naiara Cattoni",
@@ -170,10 +245,15 @@
     "Perfil": "Estilo muito extrovertido e franco | Rápido/a para manifestar-se e expressar opiniões | Voltado/a para objetivos e capaz de se auto-promover | Raciocina com imaginação e abrangência | Pode intimidar pessoas mais quietas, menos 'diretas'",
     "__participant_key__": "naiara cattoni",
     "Determinação": 8.5,
+    "Determinação_desc": "Você é forte e determinado. Depois que se foca em alguma coisa, defenderá fortemente sua posição e entrará em discussões e debates com facilidade. Alguns o verão como uma pessoa teimosa, mas ao final, sempre tentará fazer com que a equipe concorde com você. Você não é do tipo que faz as coisas a sua maneira, independente de tudo e de todos.",
     "Energia": 5.5,
+    "Energia_desc": "As pessoas o verão como alguém reservado, que leva um tempo para conhecer as pessoas e que se sente melhor quando está com pessoas que já conhece há algum tempo. Pode parecer que você demora para fazer amizades, mas você trabalhará bem em uma equipe quando lhe é dado tempo para se ajustar. Você precisa de sua privacidade.",
     "Afetividade": 5.2,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 5.2,
-    "Emocionalidade": 4.2
+    "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
+    "Emocionalidade": 4.2,
+    "Emocionalidade_desc": "Você é positivo e otimista, com tendência a olhar o lado positivo e não se perturbar. Outros reconhecerão sua capacidade de lidar igualmente com o estresse e com a pressão."
   },
   {
     "Participante": "Ricardo Clave da Silveira",
@@ -181,10 +261,15 @@
     "Perfil": "Possui um senso de propósito aguçado | Imaginativo/a e criativo/a, porém pode parecer egocêntrico/a | Conhece a própria mente | Espera que as outras pessoas defendam a si próprias | Coloca as próprias idéias na frente das idéias de outros",
     "__participant_key__": "ricardo clave da silveira",
     "Determinação": 6.8,
+    "Determinação_desc": "Você é forte e determinado, preparado para apresentar um assunto e mostrar claramente sua posição. Entretanto, você não é particularmente franco ou propenso a discussões. Geralmente, tentará ser razoável e ouvir as opiniões alheias.",
     "Energia": 3.7,
+    "Energia_desc": "Você é quieto e reservado, não é particularmente sociável e prefere a companhia de pessoas que conhece. Consegue trabalhar bem em equipe, mas é preciso que você tenha tido tempo para conhecê-los.",
     "Afetividade": 3.3,
+    "Afetividade_desc": "Você é pragmático e voltado para os negócios, concentrando-se nas questões atuais e tentando eliminar a ambigüidade e a complexidade. Você trata as pessoas com justiça, mas pode ser bastante exigente.",
     "Controle": 5.5,
-    "Emocionalidade": 6.8
+    "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
+    "Emocionalidade": 6.8,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Rodrigo Cipriani",
@@ -192,10 +277,15 @@
     "Perfil": "Estilo cauteloso, privado e pessoal | Leva tempo para se conhecer | Possui um rígido código de padrões e ética | É implacável com questões envolvendo princípios | Pode ser intolerante ou instransigente",
     "__participant_key__": "rodrigo cipriani",
     "Determinação": 7.1,
+    "Determinação_desc": "Você pode ser bastante teimoso e independente, mas as pessoas podem não perceber isso quando você tenta evitar discussões e age de maneira independente, sem consultar os demais. Em conseqüência disso, é provável que pareça que você esteja recuando para depois prosseguir por si só.",
     "Energia": 4.2,
+    "Energia_desc": "As pessoas o verão como alguém reservado, que leva um tempo para conhecer as pessoas e que se sente melhor quando está com pessoas que já conhece há algum tempo. Pode parecer que você demora para fazer amizades, mas você trabalhará bem em uma equipe quando lhe é dado tempo para se ajustar. Você precisa de sua privacidade.",
     "Afetividade": 7.4,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 8.1,
-    "Emocionalidade": 5.9
+    "Controle_desc": "Você tem um forte senso de comprometimento moral e de dever. Você é meticuloso e bem organizado, cuidadoso, metódico e ponderado. Alguns podem achar que você é muito conservador e restritivo, talvez um pouco inibido e com expectativas muito bem definidas das outras pessoas.",
+    "Emocionalidade": 5.9,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Rubia Camila Richter",
@@ -203,10 +293,15 @@
     "Perfil": "Estilo discreto e reservado | Difícil de fazê-lo/a descontrair-se em grupos sociais | Prefere independência e autonomia | Gosta de trabalhar em uma tarefa definida de cada vez | Pode passar despercebido/a para pessoas mais dominantes",
     "__participant_key__": "rubia camila richter",
     "Determinação": 3.7,
+    "Determinação_desc": "É bastante determinado, mas outros podem percebê-lo como teimoso, já que não discute e não envolve os demais nas suas discussões. Pode ser difícil compreender suas reais preocupações, uma vez que você é um pouco reticente e não expressa suas opiniões com facilidade.",
     "Energia": 1.0,
+    "Energia_desc": null,
     "Afetividade": 2.3,
+    "Afetividade_desc": "Você tem uma abordagem bastante pragmática, voltada para os negócios e com ênfase nos resultados práticos e tangíveis. Você tende a colocar suas necessidades acima da dos demais, pode ser bastante duro e não perdoar, além de geralmente questionar os motivos alheios. Algumas pessoas podem achá-lo muito crítico e insensível.",
     "Controle": 3.9,
-    "Emocionalidade": 6.2
+    "Controle_desc": "Você não se preocupa particularmente com detalhes e processos, preferindo analisar questões e conceitos mais amplos. Você não é, de maneira alguma, irresponsável, mas também não toma posições fortes e moralistas. Você tende a lidar com os assuntos conforme eles surgem em vez de ficar planejando com antecedência.",
+    "Emocionalidade": 6.2,
+    "Emocionalidade_desc": "Apesar de tender parecer positivo para estranhos, aqueles que o conhecem bem provavelmente verão um lado seu mais cauteloso ou até mesmo pessimista. Isso ficará mais aparente sob estresse ou pressão."
   },
   {
     "Participante": "Sergio dos Santos Junior",
@@ -214,10 +309,15 @@
     "Perfil": "Estilo muito extrovertido e franco | Rápido/a para manifestar-se e expressar opiniões | Voltado/a para objetivos e capaz de se auto-promover | Raciocina com imaginação e abrangência | Pode intimidar pessoas mais quietas, menos 'diretas'",
     "__participant_key__": "sergio dos santos junior",
     "Determinação": 7.4,
+    "Determinação_desc": "Você é forte e determinado, preparado para apresentar um assunto e mostrar claramente sua posição. Entretanto, você não é particularmente franco ou propenso a discussões. Geralmente, tentará ser razoável e ouvir as opiniões alheias.",
     "Energia": 6.3,
+    "Energia_desc": "Seu estilo é moderado no sentido de que você é relativamente amigável, mas não faz nada de especial para se fazer conhecido. Consegue trabalhar sozinho, se necessário, mas, de modo geral, será eficaz em uma equipe. Você não gostaria de ser pressionado e forçado a participar de algo que não o atrai.",
     "Afetividade": 4.7,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 3.3,
-    "Emocionalidade": 5.1
+    "Controle_desc": "Você não se preocupa particularmente com detalhes e processos, preferindo analisar questões e conceitos mais amplos. Você não é, de maneira alguma, irresponsável, mas também não toma posições fortes e moralistas. Você tende a lidar com os assuntos conforme eles surgem em vez de ficar planejando com antecedência.",
+    "Emocionalidade": 5.1,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Siegfried Kreutzfeld Neto",
@@ -225,10 +325,15 @@
     "Perfil": "Entusiasmado/a, sociável e divertido/a | Preparado/a para relacionar-se com qualquer pessoa | Exigente, porém flexível | Adapta-se a pessoas ou circunstâncias | Pode representar todas as coisas para todas as pessoas",
     "__participant_key__": "siegfried kreutzfeld neto",
     "Determinação": 6.8,
+    "Determinação_desc": "O ponto fundamental de seu estilo é a forte determinação de deixar sua posição bem clara. Você é rápido para dirigir e instruir pessoas e tem uma forte visão e clareza de propósito.",
     "Energia": 6.3,
+    "Energia_desc": "Sua abordagem principal é conversar com os outros, envolvendo-os no seu raciocínio e tentando chegar a uma decisão coletiva. Você é relativamente extrovertido, apesar de não ser exatamente o centro das atenções - sente-se mais à vontade ao redor de pessoas que conhece.",
     "Afetividade": 7.6,
+    "Afetividade_desc": "Você é uma pessoa que confia nos demais, prestativo e compreensivo. Você se preocupa com outras pessoas e, de modo geral, mostra isso com seu apoio, sinceridade e preocupação. Alguns podem considerá-lo um pouco flexível demais com as pessoas, que perdoa demais e é um pouco idealista. Você pode ter expectativas não-realistas das pessoas.",
     "Controle": 7.9,
-    "Emocionalidade": 5.9
+    "Controle_desc": "Você tem um forte senso de comprometimento moral e de dever. Você é meticuloso e bem organizado, cuidadoso, metódico e ponderado. Alguns podem achar que você é muito conservador e restritivo, talvez um pouco inibido e com expectativas muito bem definidas das outras pessoas.",
+    "Emocionalidade": 5.9,
+    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
   },
   {
     "Participante": "Wilson de Alcantra Machado Silva",
@@ -236,10 +341,15 @@
     "Perfil": "Estilo muito extrovertido e franco | Rápido/a para manifestar-se e expressar opiniões | Voltado/a para objetivos e capaz de se auto-promover | Raciocina com imaginação e abrangência | Pode intimidar pessoas mais quietas, menos 'diretas' | Pode ser avassalador/a e muito rápido | Oferece e mantém contribuições e ímpeto",
     "__participant_key__": "wilson de alcantra machado silva",
     "Determinação": 8.0,
+    "Determinação_desc": null,
     "Energia": 5.8,
+    "Energia_desc": "Seu estilo é moderado no sentido de que você é relativamente amigável, mas não faz nada de especial para se fazer conhecido. Consegue trabalhar sozinho, se necessário, mas, de modo geral, será eficaz em uma equipe. Você não gostaria de ser pressionado e forçado a participar de algo que não o atrai.",
     "Afetividade": 4.0,
+    "Afetividade_desc": null,
     "Controle": 5.0,
-    "Emocionalidade": 7.5
+    "Controle_desc": null,
+    "Emocionalidade": 7.5,
+    "Emocionalidade_desc": "Apesar de tender parecer positivo para estranhos, aqueles que o conhecem bem provavelmente verão um lado seu mais cauteloso ou até mesmo pessimista. Isso ficará mais aparente sob estresse ou pressão."
   },
   {
     "Participante": "Kathia Luzia Floriani",
@@ -247,10 +357,15 @@
     "Perfil": "Determinado/a com um forte senso de propósito | Busca melhoria contínua | Implementa projetos de maneira determinada | É ambicioso/a e voltado para resultados | 'Pode pisar no calo dos outros' | Autocrata, exigente | Oferece uma forte posição de liderança | Possui idéias sólidas sobre como as coisas devem ser feitas | Insiste em contribuições efetivas | Visão clara e foco",
     "__participant_key__": "kathia luzia floriani",
     "Determinação": 6.2,
+    "Determinação_desc": "O ponto fundamental de seu estilo é a forte determinação de deixar sua posição bem clara. Você é rápido para dirigir e instruir pessoas e tem uma forte visão e clareza de propósito.",
     "Energia": 5.0,
+    "Energia_desc": null,
     "Afetividade": 4.2,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
     "Controle": 5.7,
-    "Emocionalidade": 8.1
+    "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
+    "Emocionalidade": 8.1,
+    "Emocionalidade_desc": "Seu estilo é razoavelmente volátil, com tendência a reagir aos eventos, mais movido pelas emoções que pela razão. Parece que as coisas lhe atingem e você claramente apresenta fortes alterações de humor. Essas mudanças podem não ser aparentes para outras pessoas, mas são certamente reais para você. Conseqüentemente, pode parecer que você assume uma visão negativa ou pessimista das coisas e que acha difícil enxergar o lado positivo. Outros poderão considerá-lo interessante ou mesmo entusiasmado, mas de alguma maneira volúvel e inconsistente."
   },
   {
     "Participante": "Adriana Patrine de Oliveira do Prado",
@@ -258,9 +373,14 @@
     "Perfil": "Possui um senso de propósito aguçado | Imaginativo/a e criativo/a, porém pode parecer egocêntrico/a | Conhece a própria mente | Espera que as outras pessoas defendam a si próprias | Coloca as próprias idéias na frente das idéias de outros | Pode parecer pouco solidário/a, insensível, totalmente | Assumirá a liderança para conseguir trabalhar a sua própria",
     "__participant_key__": "adriana patrine de oliveira do prado",
     "Determinação": 8.0,
+    "Determinação_desc": null,
     "Energia": 5.0,
+    "Energia_desc": null,
     "Afetividade": 2.5,
+    "Afetividade_desc": "Você tem uma abordagem bastante pragmática, voltada para os negócios e com ênfase nos resultados práticos e tangíveis. Você tende a colocar suas necessidades acima da dos demais, pode ser bastante duro e não perdoar, além de geralmente questionar os motivos alheios. Algumas pessoas podem achá-lo muito crítico e insensível.",
     "Controle": 3.9,
-    "Emocionalidade": 10.0
+    "Controle_desc": "Você não se preocupa particularmente com detalhes e processos, preferindo analisar questões e conceitos mais amplos. Você não é, de maneira alguma, irresponsável, mas também não toma posições fortes e moralistas. Você tende a lidar com os assuntos conforme eles surgem em vez de ficar planejando com antecedência.",
+    "Emocionalidade": 10.0,
+    "Emocionalidade_desc": null
   }
 ]

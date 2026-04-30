@@ -17,7 +17,7 @@ let facet = [];
 let career = [];
 
 let session = null;          // { row, allowedParticipants }
-let activeFocus = "";        // "" = todos os permitidos
+let activeFocus = [];        // [] = todos os permitidos
 let activeDirector = "";     // "" = qualquer diretor
 let activeCompetency = "";   // "" = todas as competencias
 
@@ -97,55 +97,90 @@ function enterDashboard() {
 
   document.getElementById("user-caption").textContent = me;
 
-  // Filtro Participante
+  // Helper: lista só PARTICIPANTES de fato (Acesso 3) dentre os permitidos.
+  // Niveis 1 e 2 sao consumidores do app, nao aparecem como opcoes.
+  const realParticipants = session.allowedParticipants.filter((name) => {
+    const r = access.find((a) => a.PARTICIPANTE === name);
+    return r && Number(r.__access_level__) === 3;
+  });
+
+  // Filtro Participante (multi-select)
   const partSelect = document.getElementById("participant-filter");
   partSelect.innerHTML = "";
-  if (session.allowedParticipants.length > 1) {
-    const all = document.createElement("option");
-    all.value = "";
-    all.textContent = `Todos (${session.allowedParticipants.length})`;
-    partSelect.appendChild(all);
-  }
-  for (const p of session.allowedParticipants) {
+  partSelect.multiple = true;
+  partSelect.size = Math.min(Math.max(realParticipants.length, 4), 10);
+  for (const p of realParticipants) {
     const opt = document.createElement("option");
     opt.value = p;
     opt.textContent = p;
     partSelect.appendChild(opt);
   }
 
-  // Default por nível: 1 e 2 = "Todos", 3 = ele mesmo
-  if (level === 3 || session.allowedParticipants.length === 1) {
-    activeFocus = me;
-    partSelect.value = me;
+  // Default por nível: Acesso 3 = ele mesmo selecionado; Acesso 1/2 = nada selecionado (todos)
+  if (level === 3) {
+    activeFocus = [me];
+    Array.from(partSelect.options).forEach((o) => { o.selected = (o.value === me); });
   } else {
-    activeFocus = "";
-    partSelect.value = "";
+    activeFocus = [];
   }
-  partSelect.addEventListener("change", () => {
-    activeFocus = partSelect.value;
-    rerenderActiveTab();
-  });
 
-  // Filtro Diretor (apenas Acesso 1)
+  // Filtro Diretor (Acesso 1 e 2)
   const dirGroup = document.getElementById("director-filter-group");
   const dirSelect = document.getElementById("director-filter");
   if (level === 1) {
     const diretores = Array.from(
-      new Set(
-        access
-          .map((r) => r.DIRETOR)
-          .filter((v) => v && String(v).trim() !== "")
-      )
+      new Set(access.map((r) => r.DIRETOR).filter((v) => v && String(v).trim() !== ""))
     ).sort((a, b) => a.localeCompare(b, "pt-BR"));
     dirSelect.innerHTML = '<option value="">Todos</option>' +
       diretores.map((d) => `<option value="${d}">${d}</option>`).join("");
     dirGroup.hidden = false;
-    dirSelect.addEventListener("change", () => {
-      activeDirector = dirSelect.value;
-      rerenderActiveTab();
-    });
+  } else if (level === 2) {
+    // Para Acesso 2 mostra so o proprio (deixa claro de quem é a equipe)
+    dirSelect.innerHTML = `<option value="${me}" selected>${me}</option>`;
+    dirGroup.hidden = false;
+    activeDirector = me;
   } else {
     dirGroup.hidden = true;
+  }
+
+  // Listeners (depois de configurar opcoes)
+  partSelect.addEventListener("change", () => {
+    activeFocus = Array.from(partSelect.selectedOptions).map((o) => o.value);
+    syncDirectorFromParticipants();
+    rerenderActiveTab();
+  });
+  if (level === 1) {
+    dirSelect.addEventListener("change", () => {
+      activeDirector = dirSelect.value;
+      // limpa selecao de pessoas: ao filtrar diretor, mostra todos da equipe
+      activeFocus = [];
+      Array.from(partSelect.options).forEach((o) => { o.selected = false; });
+      rerenderActiveTab();
+    });
+  }
+
+  function syncDirectorFromParticipants() {
+    if (level !== 1) return;
+    if (!activeFocus.length) {
+      dirSelect.value = "";
+      activeDirector = "";
+      return;
+    }
+    // Pega o(s) diretor(es) das pessoas selecionadas
+    const dirs = new Set(
+      activeFocus.map((p) => {
+        const r = access.find((a) => a.PARTICIPANTE === p);
+        return r ? (r.DIRETOR || "") : "";
+      }).filter(Boolean)
+    );
+    if (dirs.size === 1) {
+      const d = [...dirs][0];
+      dirSelect.value = d;
+      activeDirector = d;
+    } else {
+      dirSelect.value = "";
+      activeDirector = "";
+    }
   }
 
   // Filtro Competência (Entrevista)
@@ -176,7 +211,7 @@ function enterDashboard() {
 
   document.getElementById("logout-btn").addEventListener("click", () => {
     session = null;
-    activeFocus = "";
+    activeFocus = [];
     activeDirector = "";
     activeCompetency = "";
     dashboardView.hidden = true;
@@ -191,33 +226,37 @@ function enterDashboard() {
  * Aplica o filtro completo (allowed + diretor + foco) e devolve as 3 listas filtradas.
  */
 function getFilteredData() {
-  // 1) restringe pelo nivel (allowedParticipants)
-  let allowedSet = new Set(session.allowedParticipants.map(normalizeText));
+  // 1) restringe pelo nivel (allowedParticipants), apenas Acesso 3
+  const realParticipants = session.allowedParticipants.filter((name) => {
+    const r = access.find((a) => a.PARTICIPANTE === name);
+    return r && Number(r.__access_level__) === 3;
+  });
+  let allowedSet = new Set(realParticipants.map(normalizeText));
 
-  // 2) Acesso 1: pode filtrar por diretor adicional
+  // 2) filtro por diretor (intersecao)
   if (activeDirector) {
     const dirAllowed = new Set(
       access
         .filter((r) => String(r.DIRETOR || "").trim() === activeDirector)
         .map((r) => normalizeText(r.PARTICIPANTE))
     );
-    // intersecao
     allowedSet = new Set([...allowedSet].filter((x) => dirAllowed.has(x)));
   }
 
-  // 3) Foco em um participante (se houver)
-  if (activeFocus) {
-    const focus = normalizeText(activeFocus);
-    if (allowedSet.has(focus)) {
-      allowedSet = new Set([focus]);
-    }
+  // 3) Foco em participantes selecionados (multi)
+  if (activeFocus && activeFocus.length) {
+    const focusKeys = new Set(activeFocus.map(normalizeText));
+    allowedSet = new Set([...allowedSet].filter((x) => focusKeys.has(x)));
   }
+
+  // focusName: se exatamente 1 -> nome dele (modo "individual"); senao -> null (modo "todos")
+  const focusName = (activeFocus && activeFocus.length === 1) ? activeFocus[0] : null;
 
   return {
     interviewsAllowed: interviews.filter((r) => allowedSet.has(normalizeText(r.Participante))),
     facetAllowed: facet.filter((r) => allowedSet.has(normalizeText(r.Participante))),
     careerAllowed: career.filter((r) => allowedSet.has(normalizeText(r.Participante))),
-    focusName: activeFocus || null, // null = "todos"
+    focusName,
   };
 }
 

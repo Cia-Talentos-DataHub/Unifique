@@ -58,6 +58,76 @@ RE_FACTOR = re.compile(
 RE_FAMILY = re.compile(r"Família de Referência\s*:\s*(.+)", re.IGNORECASE)
 
 
+def extract_pdf_text_flow(pdf_path: Path) -> str:
+    """pdftotext SEM -layout: texto fluido, melhor para descricoes paragrafo."""
+    if shutil.which("pdftotext"):
+        result = subprocess.run(
+            ["pdftotext", str(pdf_path), "-"],
+            capture_output=True, text=True, check=False,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            return result.stdout
+    return extract_pdf_text(pdf_path)
+
+
+def extract_factor_descriptions(text: str) -> Dict[str, str]:
+    """
+    Para cada um dos 5 fatores, extrai o paragrafo descritivo que aparece
+    abaixo do nome+nota+escala 1..10 na secao "Seu perfil".
+    """
+    lines = text.splitlines()
+    descs: Dict[str, str] = {}
+    digits = {str(n) for n in range(1, 11)}
+    factor_names_lc = {f.lower() for f in FACET_FACTORS}
+    stop_marks = {
+        "Pontuações baixas", "Pontuações altas", "Pontos fortes incluem",
+        "Normas usadas", "Como líder", "Confidencial", "Como parte de uma equipe",
+    }
+    def is_stop(s):
+        if s in stop_marks: return True
+        if s.lower() in factor_names_lc: return True
+        for m in stop_marks:
+            if s.startswith(m): return True
+        return False
+
+    for f in FACET_FACTORS:
+        f_low = f.lower()
+        for i, line in enumerate(lines):
+            if line.strip().lower().rstrip(" :") != f_low:
+                continue
+            # busca nota DECIMAL (5,4) nas proximas 12 linhas, pulando vazias e digitos da escala
+            nota_idx = None
+            for j in range(i + 1, min(i + 13, len(lines))):
+                s = lines[j].strip()
+                if not s or s in digits:
+                    continue
+                if re.match(r"^\d+[,\.]\d+$", s):
+                    nota_idx = j
+                    break
+                # se aparecer texto antes da nota, descarta essa ocorrencia
+                break
+            if nota_idx is None:
+                continue
+            k = nota_idx + 1
+            # pula vazias e a escala 1..10
+            while k < len(lines) and (not lines[k].strip() or lines[k].strip() in digits):
+                k += 1
+            # acumula texto ate linha vazia / marcador
+            buf = []
+            while k < len(lines) and lines[k].strip():
+                s = lines[k].strip()
+                if is_stop(s):
+                    break
+                buf.append(s)
+                k += 1
+            full = " ".join(buf)
+            # so aceita se for descricao real (>= 60 chars)
+            if len(full) >= 60:
+                descs[f] = full
+                break
+    return descs
+
+
 SKIP_DIR_NAMES = {".git", "node_modules", "__pycache__", "data", "scripts", "css", "js", "web"}
 
 
@@ -191,13 +261,19 @@ def parse_facet_pdf(pdf_path: Path) -> Optional[Dict]:
         if bullets:
             quadro_geral = " | ".join(b.strip() for b in bullets if b.strip())
 
-    return {
+    # Descricoes individuais por fator: usa pdftotext SEM -layout (texto fluido)
+    factor_descs = extract_factor_descriptions(extract_pdf_text_flow(pdf_path))
+
+    rec = {
         "Participante": name,
         "Familia": family,
         "Perfil": quadro_geral,
         **factor_scores,
         "_arquivo": pdf_path.name,
     }
+    for f in FACET_FACTORS:
+        rec[f"{f}_desc"] = factor_descs.get(f)
+    return rec
 
 
 CAREER_SHEET_CANDIDATES = ["Quest Carreira", "Questionário de Carreira", "Questionario", "Sheet1", "Planilha1"]
@@ -335,15 +411,13 @@ def main():
         else:
             print("\nNenhum dado extraido dos Questionarios.")
     else:
-        print("\n[Questionarios] Nenhum XLSX encontrado.")
+            print("\n[Questionarios] Nenhum XLSX encontrado.")
 
     if not facet_pdfs and not career_xlsxs:
         print("\nDicas:")
         print("  - PDFs FACET5 sao identificados pelo nome (precisam conter 'facet').")
         print("  - XLSX de Questionarios sao identificados por estarem em pasta com")
         print("    'questionario' ou 'carreira' no nome, OU por terem aba 'Quest Carreira'.")
-        print("  - Voce tambem pode passar --facet e --career com os caminhos exatos.")
-
 
 
 if __name__ == "__main__":

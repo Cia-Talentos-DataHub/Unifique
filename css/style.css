@@ -62,6 +62,14 @@ h3 { font-size: 1rem; }
   line-height: 1;
 }
 .brand-mark.sm { font-size: 1.4rem; }
+
+.brand-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+  background: #FFFFFF;
+}
+.brand-logo.sm { height: 22px; }
 .brand-divider {
   display: inline-block;
   width: 1px;
@@ -480,6 +488,55 @@ h3 { font-size: 1rem; }
 .facet-perfil h4 { font-size: 0.78rem; color: var(--uni-blue); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; }
 .facet-perfil ul { margin: 0; padding-left: 20px; font-size: 0.9rem; color: var(--text); line-height: 1.6; }
 .facet-perfil li { margin-bottom: 6px; }
+
+/* Cards de cada fator com descricao individual */
+.facet-factors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.facet-factor-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.facet-factor-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--uni-cyan);
+}
+.facet-factor-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+.facet-factor-name {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.facet-factor-score {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--uni-blue);
+  letter-spacing: -0.02em;
+}
+.facet-factor-desc {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.55;
+}
 
 /* ========== Carreira ========== */
 .carreira-block {
