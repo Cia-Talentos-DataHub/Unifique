@@ -140,7 +140,7 @@ export function renderCompetencias(container, interviews, focusName) {
     container.appendChild(chartRow2);
 
     const partsList = Array.from(new Set(records.map((r) => r.Participante).filter(Boolean))).sort();
-    const traces = partsList.map((p, idx) => {
+    const traces = partsList.map((p) => {
       const ys = competencias.map((c) => {
         const rs = records.filter((r) => r.Participante === p && r.Competencia === c);
         const vs = rs.map((r) => typeof r.Nota === "number" ? r.Nota : (typeof r.MediaCompetencia === "number" ? r.MediaCompetencia : null)).filter((v) => v !== null);
@@ -151,6 +151,10 @@ export function renderCompetencias(container, interviews, focusName) {
         name: p,
         x: competencias,
         y: ys,
+        text: ys.map((v) => v === null ? "" : v.toFixed(1)),
+        textposition: "outside",
+        textfont: { size: 10 },
+        cliponaxis: false,
       };
     });
 

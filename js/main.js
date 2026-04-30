@@ -106,15 +106,32 @@ function enterDashboard() {
 
   // Filtro Participante (multi-select)
   const partSelect = document.getElementById("participant-filter");
-  partSelect.innerHTML = "";
   partSelect.multiple = true;
-  partSelect.size = Math.min(Math.max(realParticipants.length, 4), 10);
-  for (const p of realParticipants) {
-    const opt = document.createElement("option");
-    opt.value = p;
-    opt.textContent = p;
-    partSelect.appendChild(opt);
+
+  // Repopula o select de participantes - filtra pelo diretor se houver
+  function repopulateParticipants(directorFilter) {
+    let list = realParticipants;
+    if (directorFilter) {
+      list = realParticipants.filter((p) => {
+        const r = access.find((a) => a.PARTICIPANTE === p);
+        return r && String(r.DIRETOR || "").trim() === directorFilter;
+      });
+    }
+    partSelect.innerHTML = "";
+    partSelect.size = Math.min(Math.max(list.length, 4), 10);
+    for (const p of list) {
+      const opt = document.createElement("option");
+      opt.value = p;
+      opt.textContent = p;
+      // mantem a selecao se o nome continua na nova lista
+      if (activeFocus.includes(p)) opt.selected = true;
+      partSelect.appendChild(opt);
+    }
+    // se algum nome saiu da lista, atualiza activeFocus
+    activeFocus = activeFocus.filter((p) => list.includes(p));
   }
+
+  repopulateParticipants("");
 
   // Default por nível: Acesso 3 = ele mesmo selecionado; Acesso 1/2 = nada selecionado (todos)
   if (level === 3) {
@@ -152,9 +169,9 @@ function enterDashboard() {
   if (level === 1) {
     dirSelect.addEventListener("change", () => {
       activeDirector = dirSelect.value;
-      // limpa selecao de pessoas: ao filtrar diretor, mostra todos da equipe
+      // ao escolher diretor: zera selecao e repopula com a equipe dele
       activeFocus = [];
-      Array.from(partSelect.options).forEach((o) => { o.selected = false; });
+      repopulateParticipants(activeDirector);
       rerenderActiveTab();
     });
   }

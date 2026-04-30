@@ -95,16 +95,17 @@ def extract_factor_descriptions(text: str) -> Dict[str, str]:
         for i, line in enumerate(lines):
             if line.strip().lower().rstrip(" :") != f_low:
                 continue
-            # busca nota DECIMAL (5,4) nas proximas 12 linhas, pulando vazias e digitos da escala
+            # busca a 1a linha nao-vazia depois do nome do fator: deve ser a nota
+            # (decimal "5,4" OU inteiro "8"). Como a escala 1..10 vem depois, a 1a nao-vazia
+            # eh sempre a nota real.
             nota_idx = None
-            for j in range(i + 1, min(i + 13, len(lines))):
+            for j in range(i + 1, min(i + 8, len(lines))):
                 s = lines[j].strip()
-                if not s or s in digits:
+                if not s:
                     continue
-                if re.match(r"^\d+[,\.]\d+$", s):
+                if re.match(r"^\d+(?:[,\.]\d+)?$", s):
                     nota_idx = j
-                    break
-                # se aparecer texto antes da nota, descarta essa ocorrencia
+                # primeira nao-vazia: para sempre
                 break
             if nota_idx is None:
                 continue
@@ -411,7 +412,7 @@ def main():
         else:
             print("\nNenhum dado extraido dos Questionarios.")
     else:
-            print("\n[Questionarios] Nenhum XLSX encontrado.")
+        print("\n[Questionarios] Nenhum XLSX encontrado.")
 
     if not facet_pdfs and not career_xlsxs:
         print("\nDicas:")
