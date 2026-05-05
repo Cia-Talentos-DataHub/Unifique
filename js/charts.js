@@ -164,16 +164,19 @@ export function renderCompetencias(container, interviews, focusName) {
     target.style.height = h + "px";
     target.style.minHeight = h + "px";
 
+    // legenda mais espaçada se houver muita gente (evita invadir o gráfico)
+    const legendRows = Math.ceil(partsList.length / 4);
+    const legendBottomSpace = 50 + legendRows * 22;
     Plotly.newPlot(
       target,
       traces,
       {
         ...PLOT_LAYOUT,
         barmode: "group",
-        margin: { l: 60, r: 24, t: 24, b: 60, autoexpand: true },
+        margin: { l: 60, r: 24, t: 24, b: legendBottomSpace, autoexpand: true },
         xaxis: { automargin: true, tickangle: 0 },
         yaxis: { title: "Nota", range: [0, 10], automargin: true },
-        legend: { orientation: "h", y: -0.15, x: 0, xanchor: "left", font: { size: 11 } },
+        legend: { orientation: "h", y: -0.25, x: 0, xanchor: "left", yanchor: "top", font: { size: 11 } },
       },
       PLOT_CONFIG
     );
@@ -186,18 +189,14 @@ export function renderCompetencias(container, interviews, focusName) {
     wrap.className = "table-wrap";
     const compsList = Array.from(new Set(records.map((r) => r.Competencia).filter(Boolean)));
     const partsList = Array.from(new Set(records.map((r) => r.Participante).filter(Boolean))).sort();
-    let html = `<table><thead><tr><th>Participante</th>${compsList.map((c) => `<th>${escapeHtml(c)}</th>`).join("")}<th>Média</th></tr></thead><tbody>`;
+    let html = `<table><thead><tr><th>Participante</th>${compsList.map((c) => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead><tbody>`;
     for (const p of partsList) {
       const cells = compsList.map((c) => {
         const r = records.find((x) => x.Participante === p && x.Competencia === c);
         const v = r ? (typeof r.Nota === "number" ? r.Nota : r.MediaCompetencia) : null;
         return `<td>${typeof v === "number" ? v.toFixed(1) : "—"}</td>`;
       });
-      const ms = records.filter((x) => x.Participante === p)
-        .map((x) => typeof x.Nota === "number" ? x.Nota : x.MediaCompetencia)
-        .filter((v) => typeof v === "number");
-      const m = mean(ms);
-      html += `<tr><td><strong>${escapeHtml(p)}</strong></td>${cells.join("")}<td>${m === null ? "—" : m.toFixed(2)}</td></tr>`;
+      html += `<tr><td><strong>${escapeHtml(p)}</strong></td>${cells.join("")}</tr>`;
     }
     html += "</tbody></table>";
     wrap.innerHTML = html;
@@ -502,35 +501,47 @@ export function renderFacet(container, facetRecords, focusName) {
     return;
   }
 
-  // Multi: comparativo
+  // Multi: radar comparativo + tabela. Sem KPIs de "média" porque não faz sentido
+  // misturar pontuações de participantes diferentes em uma média única.
   const radar = makeCard(`Comparativo FACET5 (${records.length} participantes)`);
+  // Altura maior pra acomodar legenda com muitos nomes
+  const radarTarget = radar.querySelector(".plot-target");
+  const h = Math.min(720, Math.max(440, 400 + Math.ceil(records.length / 3) * 18));
+  radarTarget.style.height = h + "px";
+  radarTarget.style.minHeight = h + "px";
   container.appendChild(radar);
-  const traces = records.map((r) => ({
-    type: "scatterpolar",
-    r: FACET_FACTORS.map((f) => r[f]),
-    theta: FACET_FACTORS,
-    fill: "toself",
-    opacity: 0.35,
-    name: r.Participante,
-  }));
+
+  const RADAR_PALETTE = [
+    "#1F1B8E", "#00B7F5", "#10B981", "#F59E0B", "#DC2626",
+    "#7C3AED", "#0EA5E9", "#16A34A", "#EA580C", "#DB2777",
+    "#0891B2", "#84CC16", "#F97316", "#9333EA", "#0284C7",
+    "#65A30D", "#EF4444", "#A21CAF", "#0D9488", "#CA8A04",
+    "#1D4ED8", "#059669", "#B91C1C", "#6D28D9", "#0E7490",
+  ];
+  const traces = records.map((r, idx) => {
+    const color = RADAR_PALETTE[idx % RADAR_PALETTE.length];
+    return {
+      type: "scatterpolar",
+      r: FACET_FACTORS.map((f) => r[f]),
+      theta: FACET_FACTORS,
+      fill: "toself",
+      fillcolor: color + "26", // ~15% alpha (hex 26 = 38/255)
+      opacity: 0.85,
+      line: { color, width: 2 },
+      marker: { color, size: 6 },
+      name: r.Participante,
+    };
+  });
   Plotly.newPlot(
-    radar.querySelector(".plot-target"),
+    radarTarget,
     traces,
-    { ...PLOT_LAYOUT, polar: { radialaxis: { visible: true, range: [0, 10] } } },
+    {
+      ...PLOT_LAYOUT,
+      polar: { radialaxis: { visible: true, range: [0, 10] } },
+      legend: { orientation: "v", x: 1.05, xanchor: "left", y: 1, yanchor: "top", font: { size: 11 } },
+    },
     PLOT_CONFIG
   );
-
-  // Médias dos 5 fatores
-  const meansRow = document.createElement("div");
-  meansRow.className = "kpi-row";
-  for (const f of FACET_FACTORS) {
-    const m = mean(records.map((r) => r[f]));
-    const kpi = document.createElement("div");
-    kpi.className = "kpi";
-    kpi.innerHTML = `<div class="kpi-label">Média de ${escapeHtml(f)}</div><div class="kpi-value">${m === null ? "—" : m.toFixed(2)}</div>`;
-    meansRow.appendChild(kpi);
-  }
-  container.appendChild(meansRow);
 
   // Tabela
   const wrap = document.createElement("div");
