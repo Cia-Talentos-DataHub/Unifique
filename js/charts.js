@@ -192,8 +192,14 @@ export function renderCompetencias(container, interviews, focusName) {
     let html = `<table><thead><tr><th>Participante</th>${compsList.map((c) => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead><tbody>`;
     for (const p of partsList) {
       const cells = compsList.map((c) => {
-        const r = records.find((x) => x.Participante === p && x.Competencia === c);
-        const v = r ? (typeof r.Nota === "number" ? r.Nota : r.MediaCompetencia) : null;
+        // Mesma lógica do gráfico: usa MediaCompetencia se houver,
+        // senão calcula a média das notas individuais das perguntas.
+        const rs = records.filter((x) => x.Participante === p && x.Competencia === c);
+        let v = rs.find((x) => typeof x.MediaCompetencia === "number")?.MediaCompetencia;
+        if (typeof v !== "number") {
+          const notas = rs.map((x) => x.Nota).filter((n) => typeof n === "number");
+          v = notas.length ? mean(notas) : null;
+        }
         return `<td>${typeof v === "number" ? v.toFixed(1) : "—"}</td>`;
       });
       html += `<tr><td><strong>${escapeHtml(p)}</strong></td>${cells.join("")}</tr>`;
