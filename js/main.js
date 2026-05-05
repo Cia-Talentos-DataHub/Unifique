@@ -4,7 +4,7 @@ import { dataSource } from "./data.js";
 import { authenticateParticipant } from "./auth.js";
 import { getAllowedParticipants } from "./access.js";
 import { formatNumberBR, normalizeText } from "./utils.js";
-import { renderCompetencias, renderEntrevista, renderFacet, renderCarreira } from "./charts.js";
+import { renderCompetencias, renderEntrevista, renderDesenvolvimento, renderFacet, renderCarreira } from "./charts.js";
 
 const loading = document.getElementById("loading-overlay");
 const loginView = document.getElementById("login-view");
@@ -15,6 +15,7 @@ let access = [];
 let interviews = [];
 let facet = [];
 let career = [];
+let actions = {};
 
 let session = null;          // { row, allowedParticipants }
 let activeFocus = [];        // [] = todos os permitidos
@@ -29,6 +30,7 @@ async function boot() {
     interviews = data.interviews || [];
     facet = data.facet || [];
     career = data.career || [];
+    actions = data.actions || {};
     initLogin();
   } catch (err) {
     alert("Erro ao carregar dados: " + err.message);
@@ -286,6 +288,8 @@ function rerenderActiveTab() {
     renderCompetencias(document.getElementById("competencias-content"), interviewsAllowed, focusName);
   } else if (active === "entrevista") {
     renderEntrevista(document.getElementById("entrevista-content"), interviewsAllowed, focusName, activeCompetency);
+  } else if (active === "desenvolvimento") {
+    renderDesenvolvimento(document.getElementById("desenvolvimento-content"), interviewsAllowed, actions, focusName);
   } else if (active === "facet") {
     renderFacet(document.getElementById("facet-content"), facetAllowed, focusName);
   } else if (active === "carreira") {

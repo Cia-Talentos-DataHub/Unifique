@@ -296,6 +296,137 @@ export function renderEntrevista(container, interviews, focusName, competencyFil
 }
 
 // ===========================================================
+// Aba Desenvolvimento — Cardápio de Ações por competência baseado na média
+// ===========================================================
+
+const LEVEL_INFO = {
+  abaixo_atende_parcialmente: {
+    label: "Abaixo do esperado / Atende parcialmente",
+    color: "#F59E0B",
+  },
+  atende_plenamente: {
+    label: "Atende plenamente",
+    color: "#10B981",
+  },
+  supera: {
+    label: "Supera o padrão esperado",
+    color: "#1F1B8E",
+  },
+};
+
+/** Mapeia média numérica para a faixa do cardápio. NÃO arredonda a média. */
+function mapMediaToLevel(media) {
+  if (typeof media !== "number" || Number.isNaN(media)) return null;
+  if (media < 2.51) return "abaixo_atende_parcialmente";
+  if (media < 3.51) return "atende_plenamente";
+  return "supera";
+}
+
+export function renderDesenvolvimento(container, interviews, actions, focusName) {
+  container.innerHTML = "";
+
+  if (!actions || !Object.keys(actions).length) {
+    infoMsg(container, "Cardápio de Ações de Desenvolvimento ainda não foi carregado.");
+    return;
+  }
+
+  let records = interviews;
+  if (focusName) {
+    records = records.filter((r) => normalizeText(r.Participante) === normalizeText(focusName));
+  }
+  if (!records.length) {
+    infoMsg(container, "Sem dados de entrevista para os filtros atuais.");
+    return;
+  }
+
+  // Agrupa por participante > competencia (pega a media unica por competencia)
+  const byParticipant = new Map();
+  for (const r of records) {
+    if (!r.Competencia) continue;
+    if (!byParticipant.has(r.Participante)) byParticipant.set(r.Participante, new Map());
+    const compMap = byParticipant.get(r.Participante);
+    if (!compMap.has(r.Competencia)) {
+      compMap.set(r.Competencia, {
+        media: typeof r.MediaCompetencia === "number" ? r.MediaCompetencia : null,
+        notas: [],
+      });
+    }
+    if (typeof r.Nota === "number") compMap.get(r.Competencia).notas.push(r.Nota);
+  }
+
+  // Se nao houver media salva, calcula a partir das notas individuais
+  for (const compMap of byParticipant.values()) {
+    for (const data of compMap.values()) {
+      if (data.media === null && data.notas.length) data.media = mean(data.notas);
+    }
+  }
+
+  for (const [participante, compMap] of byParticipant.entries()) {
+    const block = document.createElement("div");
+    block.className = "entrevista-block";
+
+    const header = document.createElement("h3");
+    header.className = "section-title";
+    header.textContent = participante;
+    block.appendChild(header);
+
+    for (const [competencia, data] of compMap.entries()) {
+      const compBlock = document.createElement("div");
+      compBlock.className = "entrevista-item";
+
+      const level = mapMediaToLevel(data.media);
+      const mediaTxt = data.media === null ? "—" : data.media.toString().replace(".", ",");
+      const levelLbl = level ? LEVEL_INFO[level].label : "Sem média ainda";
+      const levelColor = level ? LEVEL_INFO[level].color : "#9CA3AF";
+
+      const title = document.createElement("div");
+      title.className = "entrevista-comp";
+      title.innerHTML = `<strong>${escapeHtml(competencia)}</strong>` +
+        `<span class="badge" style="background:${levelColor}">Média ${escapeHtml(mediaTxt)} · ${escapeHtml(levelLbl)}</span>`;
+      compBlock.appendChild(title);
+
+      const compMeta = actions[competencia];
+      if (!compMeta) {
+        const warn = document.createElement("div");
+        warn.className = "info-msg";
+        warn.textContent = `Competência "${competencia}" não está mapeada no cardápio.`;
+        compBlock.appendChild(warn);
+        block.appendChild(compBlock);
+        continue;
+      }
+
+      if (!level) {
+        const m = document.createElement("div");
+        m.className = "info-msg";
+        m.textContent = "A média desta competência ainda não foi registrada — sem sugestão de desenvolvimento por enquanto.";
+        compBlock.appendChild(m);
+        block.appendChild(compBlock);
+        continue;
+      }
+
+      const blk = compMeta.niveis[level] || {};
+      const cardsRow = document.createElement("div");
+      cardsRow.className = "actions-cards";
+
+      const order = ["Como Desenvolver", "Como ir Além", "Materiais de Apoio"];
+      for (const k of order) {
+        const v = blk[k];
+        const card = document.createElement("div");
+        card.className = "action-card";
+        card.innerHTML = `<div class="action-card-title">${escapeHtml(k)}</div>` +
+          (v
+            ? `<div class="action-card-body">${escapeHtml(v).replace(/\n/g, "<br>")}</div>`
+            : `<div class="action-card-body muted">— sem conteúdo cadastrado —</div>`);
+        cardsRow.appendChild(card);
+      }
+      compBlock.appendChild(cardsRow);
+      block.appendChild(compBlock);
+    }
+    container.appendChild(block);
+  }
+}
+
+// ===========================================================
 // Aba FACET5
 // ===========================================================
 export function renderFacet(container, facetRecords, focusName) {

@@ -13,14 +13,15 @@ class LocalJsonSource {
   }
 
   async loadAll() {
-    const [manifest, access, interviews, facet, career] = await Promise.all([
+    const [manifest, access, interviews, facet, career, actions] = await Promise.all([
       this._fetch("manifest.json"),
       this._fetch("access.json"),
       this._fetch("interviews.json"),
       this._fetch("facet.json").catch(() => []),
       this._fetch("career.json").catch(() => []),
+      this._fetch("actions.json").catch(() => ({})),
     ]);
-    return { manifest, access, interviews, facet, career };
+    return { manifest, access, interviews, facet, career, actions };
   }
 }
 

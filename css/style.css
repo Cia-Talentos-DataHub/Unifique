@@ -474,6 +474,35 @@ h3 { font-size: 1rem; }
 .q-resposta { color: var(--text-soft); font-size: 0.88rem; line-height: 1.6; }
 .q-resposta.muted { font-style: italic; }
 
+/* Aba Desenvolvimento */
+.actions-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.action-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--uni-cyan);
+}
+.action-card-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--uni-blue);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.action-card-body {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.55;
+  white-space: normal;
+}
+
 /* ========== FACET ========== */
 .facet-summary {
   background: var(--surface);

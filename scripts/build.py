@@ -33,6 +33,7 @@ ACCESS_FILES = ["acessos.xlsx", "Participantes - Assessment - com diretores.xlsx
 INTERVIEWS_FILES = ["entrevistas.xlsx", "Planilha_Entrevistas_Competências POWER BI COMPLETO.xlsx"]
 FACET_FILES = ["facet.xlsx"]
 CAREER_FILES = ["questionarios.xlsx"]
+ACTIONS_FILES = ["Cardápio Ações de Desenvolvimento - UNIFIQUE.xlsx", "cardapio.xlsx"]
 
 ACCESS_SHEET_CANDIDATES = ["Acessos", "Acesso", "Planilha1", "Sheet1"]
 INTERVIEWS_SHEET_CANDIDATES = ["Entrevistas", "Entrevista", "Planilha1", "Sheet1"]
@@ -298,6 +299,71 @@ def build_facet(input_dir: Path):
     return records
 
 
+# ----------------------- Cardapio de Acoes de Desenvolvimento -----------------------
+
+def build_actions(input_dir: Path):
+    """
+    Le a planilha "Cardapio Acoes de Desenvolvimento - UNIFIQUE" e devolve, por
+    competencia, os 3 niveis de orientacao com 3 colunas cada
+    (Como Desenvolver, Como ir Alem, Materiais de Apoio).
+    """
+    path = find_first_existing_file(input_dir, ACTIONS_FILES)
+    if not path:
+        return {}
+
+    df = pd.read_excel(path, sheet_name=0, header=0)
+    df.columns = [str(c).strip() for c in df.columns]
+    df = df.dropna(how="all").reset_index(drop=True)
+
+    # Faixas (cabecalhos primarios) - cada uma tem 3 colunas: COMO DESENVOLVER, COMO IR ALEM, MATERIAIS DE APOIO
+    LEVEL_HEADERS = {
+        "abaixo_atende_parcialmente": "ABAIXO DO ESPERADO / ATENDE PARCIALMENTE",
+        "atende_plenamente": "ATENDE PLENAMENTE",
+        "supera": "SUPERA O PADRÃO ESPERADO",
+    }
+    SUB_LABELS = ["Como Desenvolver", "Como ir Além", "Materiais de Apoio"]
+
+    # Encontra os indices das 3 colunas-cabecalho
+    cols = list(df.columns)
+    level_col_starts = {}
+    for key, header in LEVEL_HEADERS.items():
+        for i, c in enumerate(cols):
+            if normalize_text(c) == normalize_text(header):
+                level_col_starts[key] = i
+                break
+
+    # forward fill da competencia e definicao
+    comp_col = find_column(df, ["COMPETÊNCIA"])
+    def_col = find_column(df, ["DEFINIÇÃO"])
+    if comp_col:
+        df[comp_col] = df[comp_col].ffill()
+    if def_col:
+        df[def_col] = df[def_col].ffill()
+
+    # Resultado: dict {competencia: {definicao, niveis: {abaixo: {3 cols}, plena: {...}, supera: {...}}}}
+    result = {}
+    for _, row in df.iterrows():
+        comp = clean_str(row.get(comp_col)) if comp_col else None
+        if not comp:
+            continue
+        if comp in result:
+            continue  # so a 1a linha de cada competencia tem os textos das acoes
+        bucket = {
+            "definicao": clean_str(row.get(def_col)) if def_col else None,
+            "niveis": {},
+        }
+        for key, start in level_col_starts.items():
+            level_data = {}
+            for offset, label in enumerate(SUB_LABELS):
+                idx = start + offset
+                if idx < len(cols):
+                    val = clean_str(row.get(cols[idx]))
+                    level_data[label] = val
+            bucket["niveis"][key] = level_data
+        result[comp] = bucket
+    return result
+
+
 # ----------------------- Career -----------------------
 
 def build_career(input_dir: Path):
@@ -339,6 +405,7 @@ def build():
     interviews_records, interviews_meta = build_interviews(INPUT_DIR)
     facet_records = build_facet(INPUT_DIR)
     career_records = build_career(INPUT_DIR)
+    actions_data = build_actions(INPUT_DIR)
 
     (OUTPUT_DIR / "access.json").write_text(
         json.dumps(access_records, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -348,6 +415,8 @@ def build():
         json.dumps(facet_records, ensure_ascii=False, indent=2), encoding="utf-8")
     (OUTPUT_DIR / "career.json").write_text(
         json.dumps(career_records, ensure_ascii=False, indent=2), encoding="utf-8")
+    (OUTPUT_DIR / "actions.json").write_text(
+        json.dumps(actions_data, ensure_ascii=False, indent=2), encoding="utf-8")
 
     manifest = {
         "access": access_meta,
@@ -359,6 +428,7 @@ def build():
             "interviews": len(interviews_records),
             "facet": len(facet_records),
             "career": len(career_records),
+            "actions": len(actions_data),
         },
     }
     (OUTPUT_DIR / "manifest.json").write_text(
