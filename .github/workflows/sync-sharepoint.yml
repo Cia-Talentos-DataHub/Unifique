@@ -1,0 +1,64 @@
+name: Sync SharePoint → GitHub Pages
+
+on:
+  schedule:
+    # A cada 6 horas (UTC). Ajuste conforme preferir.
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {}  # também permite disparar manualmente
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y poppler-utils
+          pip install -r scripts/requirements.txt
+
+      - name: Download from SharePoint
+        env:
+          SP_FILE_ACESSOS: ${{ secrets.SP_FILE_ACESSOS }}
+          SP_FILE_ENTREVISTAS: ${{ secrets.SP_FILE_ENTREVISTAS }}
+          SP_FILE_CARDAPIO: ${{ secrets.SP_FILE_CARDAPIO }}
+          SP_FOLDER_FACET: ${{ secrets.SP_FOLDER_FACET }}
+          SP_FOLDER_CARREIRA: ${{ secrets.SP_FOLDER_CARREIRA }}
+        run: |
+          mkdir -p _input
+          python scripts/fetch_sharepoint.py --out _input
+
+      - name: Convert PDFs/XLSX (parser → facet.xlsx + questionarios.xlsx)
+        run: |
+          python scripts/pdf_to_xlsx.py \
+            --facet _input/pdfs_facet5 \
+            --career _input/questionarios_carreira \
+            --out _input
+
+      - name: Build JSONs
+        env:
+          BUILD_INPUT_DIR: _input
+        run: |
+          python scripts/build.py
+
+      - name: Commit data updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "Nada mudou."
+          else
+            git commit -m "auto-sync SharePoint $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
