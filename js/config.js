@@ -11,7 +11,7 @@
 
 export const GITHUB = {
   // Identificação do repo (usados também para o link de fallback).
-  owner: "lucasf-moreira",
+  owner: "cia-talentos-datahub",
   repo: "Unifique",
   workflow_file: "sync-sharepoint.yml",
 
