@@ -51,6 +51,17 @@
         <button id="logout-btn" class="btn-secondary">Sair</button>
       </div>
 
+      <div class="sync-box" id="sync-box" hidden>
+        <div class="sync-info">
+          <span class="sync-label">Dados atualizados em</span>
+          <span class="sync-when" id="sync-when">—</span>
+        </div>
+        <button id="sync-btn" class="btn-secondary sync-btn" type="button">
+          ↻ Atualizar agora
+        </button>
+        <p class="sync-hint" id="sync-hint">Dispara a sincronização com o SharePoint. Leva ~1 minuto.</p>
+      </div>
+
       <div class="filter-group">
         <label for="participant-filter">Participante</label>
         <select id="participant-filter"></select>

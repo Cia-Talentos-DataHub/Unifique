@@ -229,6 +229,39 @@ h3 { font-size: 1rem; }
   color: var(--text);
 }
 
+/* Caixa de sync na sidebar */
+.sync-box {
+  margin-top: 20px;
+  padding: 14px 14px 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(0, 183, 245, 0.04);
+}
+.sync-info { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+.sync-label {
+  font-size: 0.7rem;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+.sync-when { font-size: 0.85rem; color: var(--text); font-weight: 600; }
+.sync-btn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+}
+.sync-hint {
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  line-height: 1.35;
+  margin: 8px 0 0 0;
+}
+
 .filter-group { margin-top: 16px; }
 .filter-group label {
   display: block;

@@ -5,6 +5,7 @@ import { authenticateParticipant } from "./auth.js";
 import { getAllowedParticipants } from "./access.js";
 import { formatNumberBR, normalizeText } from "./utils.js";
 import { renderCompetencias, renderEntrevista, renderDesenvolvimento, renderFacet, renderCarreira } from "./charts.js";
+import { GITHUB } from "./config.js";
 
 const loading = document.getElementById("loading-overlay");
 const loginView = document.getElementById("login-view");
@@ -21,6 +22,118 @@ let session = null;          // { row, allowedParticipants }
 let activeFocus = [];        // [] = todos os permitidos
 let activeDirector = "";     // "" = qualquer diretor
 let activeCompetency = "";   // "" = todas as competencias
+
+/** Dispara o workflow do GitHub Actions via API (requer fine-grained PAT). */
+async function dispatchSyncWorkflow() {
+  const url = `https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/actions/workflows/${GITHUB.workflow_file}/dispatches`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${GITHUB.pat}`,
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ ref: GITHUB.branch }),
+  });
+  if (!res.ok && res.status !== 204) {
+    const txt = await res.text();
+    throw new Error(`GitHub respondeu ${res.status}: ${txt.slice(0, 200)}`);
+  }
+}
+
+/** Polla manifest.json até detectar mudança no generated_at, ou desiste em ~3min. */
+async function waitForSyncToFinish(originalTimestamp) {
+  const start = Date.now();
+  const timeout = 3 * 60 * 1000;
+  while (Date.now() - start < timeout) {
+    await new Promise((r) => setTimeout(r, 8000));
+    try {
+      const res = await fetch("./data/manifest.json", { cache: "no-store" });
+      if (res.ok) {
+        const m = await res.json();
+        if (m.generated_at && m.generated_at !== originalTimestamp) {
+          return m;
+        }
+      }
+    } catch {}
+  }
+  return null;
+}
+
+function setupSyncBox(level) {
+  const box = document.getElementById("sync-box");
+  if (!box) return;
+  // Botão só aparece para Acesso 1
+  if (level !== 1) {
+    box.hidden = true;
+    return;
+  }
+  box.hidden = false;
+
+  const btn = document.getElementById("sync-btn");
+  const hint = document.getElementById("sync-hint");
+
+  // Se não houver PAT configurado, vira link pro GitHub (fallback)
+  if (!GITHUB.pat) {
+    btn.outerHTML = `<a id="sync-btn" class="btn-secondary sync-btn" target="_blank" rel="noopener"
+        href="https://github.com/${GITHUB.owner}/${GITHUB.repo}/actions/workflows/${GITHUB.workflow_file}">
+        ↻ Atualizar agora
+      </a>`;
+    hint.textContent = "Abre o GitHub para disparar manualmente (sem token configurado).";
+    return;
+  }
+
+  btn.addEventListener("click", async () => {
+    btn.disabled = true;
+    const originalLabel = btn.textContent;
+    btn.textContent = "Disparando…";
+    hint.textContent = "Enviando comando para o GitHub…";
+    try {
+      await dispatchSyncWorkflow();
+      btn.textContent = "Sincronizando…";
+      hint.textContent = "Aguarde ~1 minuto. A página vai recarregar quando terminar.";
+      const original = manifest && manifest.generated_at;
+      const newManifest = await waitForSyncToFinish(original);
+      if (newManifest) {
+        hint.textContent = "Atualizado! Recarregando…";
+        setTimeout(() => location.reload(), 1500);
+      } else {
+        btn.textContent = originalLabel;
+        btn.disabled = false;
+        hint.innerHTML = `Disparei o sync mas o resultado ainda não chegou. ` +
+          `Verifique no <a href="https://github.com/${GITHUB.owner}/${GITHUB.repo}/actions" target="_blank">Actions</a>.`;
+      }
+    } catch (err) {
+      console.error(err);
+      btn.textContent = originalLabel;
+      btn.disabled = false;
+      hint.textContent = "Falha: " + err.message;
+    }
+  });
+}
+
+function renderSyncStatus() {
+  const el = document.getElementById("sync-when");
+  if (!el) return;
+  const ts = manifest && manifest.generated_at;
+  if (!ts) { el.textContent = "—"; return; }
+  try {
+    const dt = new Date(ts);
+    const now = new Date();
+    const diffMs = now - dt;
+    const diffMin = Math.round(diffMs / 60000);
+    let rel;
+    if (diffMin < 1) rel = "agora há pouco";
+    else if (diffMin < 60) rel = `há ${diffMin} min`;
+    else if (diffMin < 60 * 24) rel = `há ${Math.round(diffMin / 60)} h`;
+    else rel = `há ${Math.round(diffMin / 60 / 24)} dia(s)`;
+    const local = dt.toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+    el.textContent = `${local} — ${rel}`;
+  } catch {
+    el.textContent = ts;
+  }
+}
 
 async function boot() {
   try {
@@ -98,6 +211,8 @@ function enterDashboard() {
   const level = Number(session.row.__access_level__ || 0);
 
   document.getElementById("user-caption").textContent = me;
+  renderSyncStatus();
+  setupSyncBox(level);
 
   // Helper: lista só PARTICIPANTES de fato (Acesso 3) dentre os permitidos.
   // Niveis 1 e 2 sao consumidores do app, nao aparecem como opcoes.

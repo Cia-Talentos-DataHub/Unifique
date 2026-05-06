@@ -11,6 +11,7 @@ Saídas em ../data/:
 
 from __future__ import annotations
 
+import datetime as _dt
 import hashlib
 import json
 import os
@@ -419,6 +420,7 @@ def build():
         json.dumps(actions_data, ensure_ascii=False, indent=2), encoding="utf-8")
 
     manifest = {
+        "generated_at": _dt.datetime.now(_dt.timezone.utc).isoformat(timespec="seconds"),
         "access": access_meta,
         "interviews": interviews_meta,
         "facet_groups": FACET_GROUPS,
