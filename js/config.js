@@ -24,5 +24,5 @@ export const GITHUB = {
   branch: "main",
   // Cole o fine-grained PAT aqui. Deixe vazio se não quiser usar (botão fica
   // como link pra o GitHub, igual a Opção A).
-  pat: "",
+  pat: "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",
 };
