@@ -1,0 +1,16 @@
+name = "unifique-sync"
+main = "worker.js"
+compatibility_date = "2024-09-01"
+
+# Variáveis públicas (não são segredo). Edite conforme seu repo.
+[vars]
+GH_OWNER = "lucasf-moreira"
+GH_REPO = "Unifique"
+GH_WORKFLOW = "sync-sharepoint.yml"
+GH_BRANCH = "main"
+ALLOWED_ORIGIN = "https://lucasf-moreira.github.io"
+
+# Secrets (NÃO COLOQUE AQUI). Configure via:
+#   wrangler secret put GH_PAT
+#   wrangler secret put TRIGGER_KEY
+# Ou pelo Dashboard: Workers & Pages → seu worker → Settings → Variables → Add encrypted variable

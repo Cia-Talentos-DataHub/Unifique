@@ -23,22 +23,20 @@ let activeFocus = [];        // [] = todos os permitidos
 let activeDirector = "";     // "" = qualquer diretor
 let activeCompetency = "";   // "" = todas as competencias
 
-/** Dispara o workflow do GitHub Actions via API (requer fine-grained PAT). */
+/** Dispara o workflow via Cloudflare Worker (que repassa pro GitHub usando PAT). */
 async function dispatchSyncWorkflow() {
-  const url = `https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/actions/workflows/${GITHUB.workflow_file}/dispatches`;
+  const url = GITHUB.workerUrl.replace(/\/$/, "") + "/trigger";
   const res = await fetch(url, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${GITHUB.pat}`,
-      Accept: "application/vnd.github+json",
-      "X-GitHub-Api-Version": "2022-11-28",
       "Content-Type": "application/json",
+      "X-Trigger-Key": GITHUB.triggerKey || "",
     },
-    body: JSON.stringify({ ref: GITHUB.branch }),
+    body: "{}",
   });
   if (!res.ok && res.status !== 204) {
     const txt = await res.text();
-    throw new Error(`GitHub respondeu ${res.status}: ${txt.slice(0, 200)}`);
+    throw new Error(`Worker respondeu ${res.status}: ${txt.slice(0, 200)}`);
   }
 }
 
@@ -74,13 +72,13 @@ function setupSyncBox(level) {
   const btn = document.getElementById("sync-btn");
   const hint = document.getElementById("sync-hint");
 
-  // Se não houver PAT configurado, vira link pro GitHub (fallback)
-  if (!GITHUB.pat) {
+  // Sem Worker configurado: cai no fallback de link pro GitHub (Opção A).
+  if (!GITHUB.workerUrl || !GITHUB.triggerKey) {
     btn.outerHTML = `<a id="sync-btn" class="btn-secondary sync-btn" target="_blank" rel="noopener"
         href="https://github.com/${GITHUB.owner}/${GITHUB.repo}/actions/workflows/${GITHUB.workflow_file}">
         ↻ Atualizar agora
       </a>`;
-    hint.textContent = "Abre o GitHub para disparar manualmente (sem token configurado).";
+    hint.textContent = "Worker ainda não configurado — abre o GitHub para disparar manualmente.";
     return;
   }
 
