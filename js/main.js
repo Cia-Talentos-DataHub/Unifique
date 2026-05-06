@@ -40,14 +40,15 @@ async function dispatchSyncWorkflow() {
   }
 }
 
-/** Polla manifest.json até detectar mudança no generated_at, ou desiste em ~3min. */
+/** Polla manifest.json até detectar mudança no generated_at, ou desiste em 5 min. */
 async function waitForSyncToFinish(originalTimestamp) {
   const start = Date.now();
-  const timeout = 3 * 60 * 1000;
+  const timeout = 5 * 60 * 1000;
   while (Date.now() - start < timeout) {
-    await new Promise((r) => setTimeout(r, 8000));
+    await new Promise((r) => setTimeout(r, 5000));
     try {
-      const res = await fetch("./data/manifest.json", { cache: "no-store" });
+      // cache-buster para evitar que o navegador devolva manifest antigo
+      const res = await fetch(`./data/manifest.json?t=${Date.now()}`, { cache: "no-store" });
       if (res.ok) {
         const m = await res.json();
         if (m.generated_at && m.generated_at !== originalTimestamp) {
@@ -85,28 +86,42 @@ function setupSyncBox(level) {
   btn.addEventListener("click", async () => {
     btn.disabled = true;
     const originalLabel = btn.textContent;
-    btn.textContent = "Disparando…";
-    hint.textContent = "Enviando comando para o GitHub…";
+    btn.textContent = "Sincronizando…";
+    hint.textContent = "Pedindo atualização ao servidor…";
+    const original = manifest && manifest.generated_at;
+
+    // Tenta disparar. Mesmo se der "Failed to fetch", o request pode ter
+    // chegado no Worker (CORS preflight pode falhar em ler a resposta).
+    // Vamos seguir pro polling em ambos os casos.
+    let dispatchError = null;
     try {
       await dispatchSyncWorkflow();
-      btn.textContent = "Sincronizando…";
-      hint.textContent = "Aguarde ~1 minuto. A página vai recarregar quando terminar.";
-      const original = manifest && manifest.generated_at;
-      const newManifest = await waitForSyncToFinish(original);
-      if (newManifest) {
-        hint.textContent = "Atualizado! Recarregando…";
-        setTimeout(() => location.reload(), 1500);
-      } else {
-        btn.textContent = originalLabel;
-        btn.disabled = false;
-        hint.innerHTML = `Disparei o sync mas o resultado ainda não chegou. ` +
-          `Verifique no <a href="https://github.com/${GITHUB.owner}/${GITHUB.repo}/actions" target="_blank">Actions</a>.`;
-      }
     } catch (err) {
-      console.error(err);
-      btn.textContent = originalLabel;
-      btn.disabled = false;
-      hint.textContent = "Falha: " + err.message;
+      console.warn("[sync] dispatch retornou erro, mas vou monitorar:", err.message);
+      dispatchError = err;
+    }
+
+    hint.textContent = "Aguarde ~1 minuto. A página recarrega sozinha quando terminar.";
+
+    // Faz polling do manifest. Se atualizar = realmente funcionou.
+    const newManifest = await waitForSyncToFinish(original);
+    if (newManifest) {
+      btn.textContent = "Atualizado!";
+      hint.textContent = "Pronto. Recarregando…";
+      setTimeout(() => location.reload(), 1200);
+      return;
+    }
+
+    btn.textContent = originalLabel;
+    btn.disabled = false;
+    if (dispatchError) {
+      hint.innerHTML = `Não consegui confirmar a sincronização. ` +
+        `Veja em <a href="https://github.com/${GITHUB.owner}/${GITHUB.repo}/actions" target="_blank">GitHub Actions</a> ` +
+        `ou tente de novo em alguns instantes.`;
+    } else {
+      hint.innerHTML = `Pedido enviado, mas a atualização ainda não veio. ` +
+        `Acompanhe em <a href="https://github.com/${GITHUB.owner}/${GITHUB.repo}/actions" target="_blank">GitHub Actions</a> ` +
+        `e recarregue esta página quando terminar.`;
     }
   });
 }
