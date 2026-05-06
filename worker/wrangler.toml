@@ -4,11 +4,11 @@ compatibility_date = "2024-09-01"
 
 # Variáveis públicas (não são segredo). Edite conforme seu repo.
 [vars]
-GH_OWNER = "lucasf-moreira"
+GH_OWNER = "cia-talentos-datahub"
 GH_REPO = "Unifique"
 GH_WORKFLOW = "sync-sharepoint.yml"
 GH_BRANCH = "main"
-ALLOWED_ORIGIN = "https://lucasf-moreira.github.io"
+ALLOWED_ORIGIN = "https://cia-talentos-datahub.github.io"
 
 # Secrets (NÃO COLOQUE AQUI). Configure via:
 #   wrangler secret put GH_PAT
