@@ -403,7 +403,7 @@ export function renderDesenvolvimento(container, interviews, actions, focusName)
       compBlock.className = "entrevista-item";
 
       const level = mapMediaToLevel(data.media);
-      const mediaTxt = data.media === null ? "—" : data.media.toString().replace(".", ",");
+      const mediaTxt = data.media === null ? "—" : data.media.toFixed(2).replace(".", ",");
       const levelLbl = level ? LEVEL_INFO[level].label : "Sem média ainda";
       const levelColor = level ? LEVEL_INFO[level].color : "#9CA3AF";
 
