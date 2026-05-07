@@ -20,6 +20,29 @@ const UNI_BLUE = "#1F1B8E";
 const UNI_CYAN = "#00B7F5";
 const UNI_GREEN = "#80D8C2";
 
+/**
+ * Wrapper para Plotly que garante redimensionamento correto:
+ * 1. Renderiza o gráfico
+ * 2. Após o layout estabilizar, força um resize
+ * 3. Observa mudanças do container (ex: zoom, redimensionar janela) e replica
+ */
+function plotResponsive(target, traces, layout, config = PLOT_CONFIG) {
+  Plotly.newPlot(target, traces, layout, config);
+  // primeiro frame: força resize já que o tamanho real do container só é
+  // estável depois que o navegador termina o layout pass.
+  requestAnimationFrame(() => {
+    try { Plotly.Plots.resize(target); } catch {}
+  });
+  // observador de mudanças (zoom, sidebar abrindo, etc.)
+  if (window.ResizeObserver && !target.__ro__) {
+    const ro = new ResizeObserver(() => {
+      try { Plotly.Plots.resize(target); } catch {}
+    });
+    ro.observe(target);
+    target.__ro__ = ro;
+  }
+}
+
 const FACET_FACTORS = [
   "Determinação",
   "Energia",
@@ -109,7 +132,7 @@ export function renderCompetencias(container, interviews, focusName) {
   const competencias = Array.from(byComp.keys());
   const valores = competencias.map((c) => mean(byComp.get(c)) ?? 0);
 
-  Plotly.newPlot(
+  plotResponsive(
     card1.querySelector(".plot-target"),
     [{
       type: "bar",
@@ -167,7 +190,7 @@ export function renderCompetencias(container, interviews, focusName) {
     // legenda mais espaçada se houver muita gente (evita invadir o gráfico)
     const legendRows = Math.ceil(partsList.length / 4);
     const legendBottomSpace = 50 + legendRows * 22;
-    Plotly.newPlot(
+    plotResponsive(
       target,
       traces,
       {
@@ -471,7 +494,7 @@ export function renderFacet(container, facetRecords, focusName) {
 
     const radar = makeCard("Perfil dos 5 fatores");
     container.appendChild(radar);
-    Plotly.newPlot(
+    plotResponsive(
       radar.querySelector(".plot-target"),
       [{
         type: "scatterpolar",
@@ -538,7 +561,7 @@ export function renderFacet(container, facetRecords, focusName) {
       name: r.Participante,
     };
   });
-  Plotly.newPlot(
+  plotResponsive(
     radarTarget,
     traces,
     {
