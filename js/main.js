@@ -108,7 +108,13 @@ function setupSyncBox(level) {
     if (newManifest) {
       btn.textContent = "Atualizado!";
       hint.textContent = "Pronto. Recarregando…";
-      setTimeout(() => location.reload(), 1200);
+      // Hard refresh: muda a URL com timestamp para forçar recarregar tudo do zero,
+      // ignorando cache do navegador (equivalente a Ctrl+Shift+R).
+      setTimeout(() => {
+        const u = new URL(location.href);
+        u.searchParams.set("t", Date.now().toString());
+        location.replace(u.toString());
+      }, 1200);
       return;
     }
 
@@ -271,12 +277,19 @@ function enterDashboard() {
     activeFocus = [];
   }
 
-  // Filtro Diretor (Acesso 1 e 2)
+  // Filtro Diretor (Acesso 1, 2 e 4)
   const dirGroup = document.getElementById("director-filter-group");
   const dirSelect = document.getElementById("director-filter");
-  if (level === 1) {
+  if (level === 1 || level === 4) {
+    // Lista todos os diretores presentes nos participantes que esse usuário pode ver
+    const visibleSet = new Set(realParticipants);
     const diretores = Array.from(
-      new Set(access.map((r) => r.DIRETOR).filter((v) => v && String(v).trim() !== ""))
+      new Set(
+        access
+          .filter((r) => visibleSet.has(r.PARTICIPANTE))
+          .map((r) => r.DIRETOR)
+          .filter((v) => v && String(v).trim() !== "")
+      )
     ).sort((a, b) => a.localeCompare(b, "pt-BR"));
     dirSelect.innerHTML = '<option value="">Todos</option>' +
       diretores.map((d) => `<option value="${d}">${d}</option>`).join("");
@@ -296,7 +309,7 @@ function enterDashboard() {
     syncDirectorFromParticipants();
     rerenderActiveTab();
   });
-  if (level === 1) {
+  if (level === 1 || level === 4) {
     dirSelect.addEventListener("change", () => {
       activeDirector = dirSelect.value;
       // ao escolher diretor: zera selecao e repopula com a equipe dele
@@ -307,7 +320,7 @@ function enterDashboard() {
   }
 
   function syncDirectorFromParticipants() {
-    if (level !== 1) return;
+    if (level !== 1 && level !== 4) return;
     if (!activeFocus.length) {
       dirSelect.value = "";
       activeDirector = "";
