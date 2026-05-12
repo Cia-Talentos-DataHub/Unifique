@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-12T14:36:05+00:00",
+  "generated_at": "2026-05-12T14:50:42+00:00",
   "access": {
     "participant_column": "PARTICIPANTE",
     "email_column": "E-MAIL",
@@ -27,7 +27,7 @@
   "pbkdf2_iterations": 200000,
   "row_counts": {
     "access": 25,
-    "interviews": 225,
+    "interviews": 222,
     "facet": 24,
     "career": 510,
     "actions": 3
