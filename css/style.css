@@ -64,12 +64,12 @@ h3 { font-size: 1rem; }
 .brand-mark.sm { font-size: 1.4rem; }
 
 .brand-logo {
-  height: 56px;
+  height: 84px;
   width: auto;
   display: block;
   background: #FFFFFF;
 }
-.brand-logo.sm { height: 32px; }
+.brand-logo.sm { height: 48px; }
 .brand-divider {
   display: inline-block;
   width: 1px;
