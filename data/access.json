@@ -8,331 +8,51 @@
     "__access_level__": 3,
     "__participant_key__": "ademar hasquel",
     "__password_hash__": {
-      "salt": "4d426aefcab78c41f51ff11ad5ed9997",
+      "salt": "9fc4c4dfece207bc38fb9115b35204ba",
       "iterations": 200000,
-      "hash": "d82335d04920b97d27476a5dd3598719202ea9a9373c309499c1ddad9e8c6eac"
-    }
-  },
-  {
-    "PARTICIPANTE": "Adriano Struck",
-    "EMAIL": "adriano.struck@redeunifique.com.br",
-    "CARGO": "Gerente Rede",
-    "DIRETOR": null,
-    "DIRETORIA": "Reporte ao Presidente",
-    "__access_level__": 3,
-    "__participant_key__": "adriano struck",
-    "__password_hash__": {
-      "salt": "292b7b5fdf990e764ab061b25127f8e8",
-      "iterations": 200000,
-      "hash": "f614813432e66d8a4a20d5fffa0b9c836d0e5c5bbd91a0c72d9d1dbc1ac957f0"
-    }
-  },
-  {
-    "PARTICIPANTE": "André José Vicente",
-    "EMAIL": "andre.vicente@redeunifique.com.br",
-    "CARGO": "Gerente Contábil",
-    "DIRETOR": "Luiz Bogo Jr",
-    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
-    "__access_level__": 3,
-    "__participant_key__": "andré josé vicente",
-    "__password_hash__": {
-      "salt": "1e63445ed6f0754bab04804935948ed4",
-      "iterations": 200000,
-      "hash": "389cda554254f8d4c16dfb0695ce54eb0a8461fa9ebdb3539955012f7bc2636b"
-    }
-  },
-  {
-    "PARTICIPANTE": "Arthur Hans Kasdorf",
-    "EMAIL": "arthur.hk@redeunifique.com.br",
-    "CARGO": "Gerente Infraestrutura",
-    "DIRETOR": null,
-    "DIRETORIA": "Reporte ao Presidente",
-    "__access_level__": 3,
-    "__participant_key__": "arthur hans kasdorf",
-    "__password_hash__": {
-      "salt": "175b42a4b1a6e68e9ada7e3ca26f85db",
-      "iterations": 200000,
-      "hash": "e1e7c9f2eac0ca8d993f9b3f825128b785f3e992d01242e774adc69a2f8497c6"
-    }
-  },
-  {
-    "PARTICIPANTE": "Dieysson José Maciel",
-    "EMAIL": "dieysson.maciel@redeunifique.com.br",
-    "CARGO": "Gerente Nacional B2C",
-    "DIRETOR": "Jair Francisco",
-    "DIRETORIA": "Mercado",
-    "__access_level__": 3,
-    "__participant_key__": "dieysson josé maciel",
-    "__password_hash__": {
-      "salt": "0bc4ba744885ac43b2e54bacaa18a7d2",
-      "iterations": 200000,
-      "hash": "023c333fe4297d3bea9cce635f434b6ffa2088561e2d21945cd562ffb07a9e91"
-    }
-  },
-  {
-    "PARTICIPANTE": "Flávio Henrique dos Santos",
-    "EMAIL": "flavio.santos@redeunifique.com.br",
-    "CARGO": "Gerente O&M Geral",
-    "DIRETOR": null,
-    "DIRETORIA": "Reporte ao Presidente",
-    "__access_level__": 3,
-    "__participant_key__": "flávio henrique dos santos",
-    "__password_hash__": {
-      "salt": "508de522099ed2657d38a4bfc2f3621f",
-      "iterations": 200000,
-      "hash": "55103d31c4fc3014cd9aad05aae13828c6279399f8e79d934f902d3889670375"
-    }
-  },
-  {
-    "PARTICIPANTE": "Julian Eble",
-    "EMAIL": "julian.eble@redeunifique.com.br",
-    "CARGO": "Gerente Projetos",
-    "DIRETOR": null,
-    "DIRETORIA": "Reporte ao Presidente",
-    "__access_level__": 3,
-    "__participant_key__": "julian eble",
-    "__password_hash__": {
-      "salt": "26207c2a97c30cadd813b71ec1bde760",
-      "iterations": 200000,
-      "hash": "3957020e5b7c00e5c9565d3de9f84047cfb2b898d7e2d54e42b56daef2aefbab"
-    }
-  },
-  {
-    "PARTICIPANTE": "Julio Cesar Conti",
-    "EMAIL": "julio.conti@redeunifique.com.br",
-    "CARGO": "Gerente Administração de Pessoal",
-    "DIRETOR": "Cátia Carla Calliari",
-    "DIRETORIA": "Recursos Humanos",
-    "__access_level__": 3,
-    "__participant_key__": "julio cesar conti",
-    "__password_hash__": {
-      "salt": "086aafc4f4ac105e321cf38c81fb2fd3",
-      "iterations": 200000,
-      "hash": "089adc6720d38c9e6d8666dc2c0ac5c8a23f5206a2b42accdface5cf8545ec28"
-    }
-  },
-  {
-    "PARTICIPANTE": "Kathia Luzia Floriani",
-    "EMAIL": "kathia.floriani@redeunifique.com.br",
-    "CARGO": "Gerente Experiência do Cliente",
-    "DIRETOR": "Aldo Junior Pasqualini",
-    "DIRETORIA": "Marketing",
-    "__access_level__": 3,
-    "__participant_key__": "kathia luzia floriani",
-    "__password_hash__": {
-      "salt": "9e840d43273e2c1d042b176afcaa3e06",
-      "iterations": 200000,
-      "hash": "df148cd03bf53e5e5eb8f8960f983f55172e8b5f30ac2645081968044a450e6c"
-    }
-  },
-  {
-    "PARTICIPANTE": "Leonardo Peters",
-    "EMAIL": "leonardo.peters@redeunifique.com.br",
-    "CARGO": "Gerente Inovação e Novos Negócios",
-    "DIRETOR": "Gabriel Assis Amancio",
-    "DIRETORIA": "Inovação e Transformação Digital",
-    "__access_level__": 3,
-    "__participant_key__": "leonardo peters",
-    "__password_hash__": {
-      "salt": "04613d6bd03825f08df66f8daad07221",
-      "iterations": 200000,
-      "hash": "f94e4252280eb86e3958d9d750f5724f5c9d8c6fabf58bb4789ff20763e83eab"
-    }
-  },
-  {
-    "PARTICIPANTE": "Matheus Antonio Zatelli",
-    "EMAIL": "matheus.zatelli@redeunifique.com.br",
-    "CARGO": "Gerente Comunicação e Marketing",
-    "DIRETOR": "Aldo Junior Pasqualini",
-    "DIRETORIA": "Marketing",
-    "__access_level__": 3,
-    "__participant_key__": "matheus antonio zatelli",
-    "__password_hash__": {
-      "salt": "aa4f9b9038a5b21d35ea6a5733fea582",
-      "iterations": 200000,
-      "hash": "e5f8cb855b15c3211f70d79ec7bca84cf4e4d01750debc7ff8dfb8d8ff9fa0a9"
-    }
-  },
-  {
-    "PARTICIPANTE": "Naiara Cattoni",
-    "EMAIL": "naiara.cattoni@redeunifique.com.br",
-    "CARGO": "Gerente Governança Corporativa",
-    "DIRETOR": "Luiz Bogo Jr",
-    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
-    "__access_level__": 3,
-    "__participant_key__": "naiara cattoni",
-    "__password_hash__": {
-      "salt": "70be58fa9730ddae5d77a09b292ffc4f",
-      "iterations": 200000,
-      "hash": "df8b92800c30fcd1580e587ae8c8f94b11c4ea07aaeb646ec9f7073651c18b4c"
-    }
-  },
-  {
-    "PARTICIPANTE": "Ricardo Clave da Silveira",
-    "EMAIL": "ricardo.clave@redeunifique.com.br",
-    "CARGO": "Gerente Nacional B2B e B2G",
-    "DIRETOR": "Jair Francisco",
-    "DIRETORIA": "Mercado",
-    "__access_level__": 3,
-    "__participant_key__": "ricardo clave da silveira",
-    "__password_hash__": {
-      "salt": "cfaed800679880ea72d31c5a62458994",
-      "iterations": 200000,
-      "hash": "51fdd7dba346ffa1c04ee9c9ccd39918536bb4cb6580ee065fd555ccb4629d45"
-    }
-  },
-  {
-    "PARTICIPANTE": "Rodrigo Cipriani",
-    "EMAIL": "rodrigo.cipriani@redeunifique.com.br",
-    "CARGO": "Gerente Financeiro",
-    "DIRETOR": "Luiz Bogo Jr",
-    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
-    "__access_level__": 3,
-    "__participant_key__": "rodrigo cipriani",
-    "__password_hash__": {
-      "salt": "c3f5dde22d66134e09435354bb6f12a5",
-      "iterations": 200000,
-      "hash": "ffe6e25b20f868fe2508ccfc76f44eeee82c62beae1fe7331c2be109c15d51de"
-    }
-  },
-  {
-    "PARTICIPANTE": "Sergio dos Santos Junior",
-    "EMAIL": "sergio.santos@redeunifique.com.br",
-    "CARGO": "Gerente Mercado",
-    "DIRETOR": "Jair Francisco",
-    "DIRETORIA": "Mercado",
-    "__access_level__": 3,
-    "__participant_key__": "sergio dos santos junior",
-    "__password_hash__": {
-      "salt": "5c8735bcdc01348b4d6b7b0902a64f7a",
-      "iterations": 200000,
-      "hash": "966a4ce76e13b1eb744edebefbaa3973225ebff66003e71d027ae99a110eb97d"
-    }
-  },
-  {
-    "PARTICIPANTE": "Siegfried Kreutzfeld Neto",
-    "EMAIL": "siegfried.neto@redeunifique.com.br",
-    "CARGO": "Gerente Sistemas",
-    "DIRETOR": "Gabriel Assis Amancio",
-    "DIRETORIA": "Inovação e Transformação Digital",
-    "__access_level__": 3,
-    "__participant_key__": "siegfried kreutzfeld neto",
-    "__password_hash__": {
-      "salt": "629972bbd62f2c81691a3a107b7c8997",
-      "iterations": 200000,
-      "hash": "7d988db8a3b24843ee3ddec29cb2cc640b0c9acaba54fbd8373d9c4ec34528cd"
-    }
-  },
-  {
-    "PARTICIPANTE": "Wilson de Alcantra Machado Silva",
-    "EMAIL": "wilson.silva@redeunifique.com.br",
-    "CARGO": "Gerente Assuntos Regulatórios",
-    "DIRETOR": "Luiz Bogo Jr",
-    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
-    "__access_level__": 3,
-    "__participant_key__": "wilson de alcantra machado silva",
-    "__password_hash__": {
-      "salt": "3e86cfe42ca3d156dc3e981151bb27d1",
-      "iterations": 200000,
-      "hash": "f27253b0c3c62e684c80fb9cfc7ff3a577638acecd649667bced3e39a01313f9"
+      "hash": "379239683f45d4bd307c0bd4dcebd4ff19ff709075637f1027c6cc1f657e5ef7"
     }
   },
   {
     "PARTICIPANTE": "Adriana Joice Sandri Osti",
     "EMAIL": "adriana.osti@redeunifique.com.br",
-    "CARGO": "COORD SAUDE SEGURANCA TRABALHO",
+    "CARGO": "Coord Saude Seguranca Trabalho",
     "DIRETOR": "Cátia Carla Calliari",
     "DIRETORIA": "Recursos Humanos",
     "__access_level__": 3,
     "__participant_key__": "adriana joice sandri osti",
     "__password_hash__": {
-      "salt": "40d6c5d53a9c3e413c0aa959413660ed",
+      "salt": "31ac6981a86efdbfed8f2faf6ffe6ac5",
       "iterations": 200000,
-      "hash": "087b4c637e2921c7c89b381aca603af120e33eb972063a6dee5b5bade8ff829b"
+      "hash": "23d7d2d8c5088b59dee9c8463deda2db7f32947dbece0793afa95153fafabf6d"
     }
   },
   {
-    "PARTICIPANTE": "Rubia Camila Richter",
-    "EMAIL": "rubia.richter@redeunifique.com.br",
-    "CARGO": "COORD DESENV CULTURA E PERFOR",
-    "DIRETOR": "Cátia Carla Calliari",
-    "DIRETORIA": "Recursos Humanos",
+    "PARTICIPANTE": "Adriana Patrine de Oliveira do Prado",
+    "EMAIL": "adriana.prado@redeunifique.com.br",
+    "CARGO": "Coordenadora de Compras",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
     "__access_level__": 3,
-    "__participant_key__": "rubia camila richter",
+    "__participant_key__": "adriana patrine de oliveira do prado",
     "__password_hash__": {
-      "salt": "8462a7b37dd1f576ac356728897ad54e",
+      "salt": "384c3906fdded13bbb748090f283d870",
       "iterations": 200000,
-      "hash": "cae3120dff6cf41b7600dfbc4b699d9e5beaaa0a70650e5ec3a76cc5d5d24892"
+      "hash": "7baa098b18fc9d710776d4ba2a64b2687907d91454077ba89932da0dd646b42c"
     }
   },
   {
-    "PARTICIPANTE": "ANA PAULA DE OLIVEIRA CALDAS",
-    "EMAIL": "ana.oliveira@redeunifique.com.br",
-    "CARGO": "LIDER RECRUTAMENTO E SELECAO",
-    "DIRETOR": "Cátia Carla Calliari",
-    "DIRETORIA": "Recursos Humanos",
-    "__access_level__": 3,
-    "__participant_key__": "ana paula de oliveira caldas",
-    "__password_hash__": {
-      "salt": "44ef0340d8fe23080e13efbf9a85c7ce",
-      "iterations": 200000,
-      "hash": "68b7eee693c1faecfc2b4e24836f4e86f014e18b58154009ca186330697c7f5c"
-    }
-  },
-  {
-    "PARTICIPANTE": "Gabriel Assis Amancio",
-    "EMAIL": null,
+    "PARTICIPANTE": "Adriano Struck",
+    "EMAIL": "adriano.struck@redeunifique.com.br",
     "CARGO": "DIRETOR",
     "DIRETOR": null,
     "DIRETORIA": null,
     "__access_level__": 2,
-    "__participant_key__": "gabriel assis amancio",
+    "__participant_key__": "adriano struck",
     "__password_hash__": {
-      "salt": "c7723f329df2324a71b465810886d5d2",
+      "salt": "394ff77f0b1c4b810633e1a0b7f87bf8",
       "iterations": 200000,
-      "hash": "a7b2f4064bbbf1df01edf492d3715d443df44b8d06ea68de980d3b59964eeadf"
-    }
-  },
-  {
-    "PARTICIPANTE": "Luiz Bogo Jr",
-    "EMAIL": null,
-    "CARGO": "DIRETOR",
-    "DIRETOR": null,
-    "DIRETORIA": null,
-    "__access_level__": 2,
-    "__participant_key__": "luiz bogo jr",
-    "__password_hash__": {
-      "salt": "05aed0966bc260e2233befaf04ed1075",
-      "iterations": 200000,
-      "hash": "16156923a946a29b411fc935282622707b1f43d6287c8e1f0991b83c04199945"
-    }
-  },
-  {
-    "PARTICIPANTE": "Jair Francisco",
-    "EMAIL": null,
-    "CARGO": "DIRETOR",
-    "DIRETOR": null,
-    "DIRETORIA": null,
-    "__access_level__": 2,
-    "__participant_key__": "jair francisco",
-    "__password_hash__": {
-      "salt": "78093afd0495865689867f1cc9b7c6ff",
-      "iterations": 200000,
-      "hash": "cd01446dd5a436988b006ad05178f7a3cb2911e0198b505d477f6db570f0d9eb"
-    }
-  },
-  {
-    "PARTICIPANTE": "Cátia Carla Calliari",
-    "EMAIL": null,
-    "CARGO": "DIRETOR",
-    "DIRETOR": null,
-    "DIRETORIA": null,
-    "__access_level__": 1,
-    "__participant_key__": "cátia carla calliari",
-    "__password_hash__": {
-      "salt": "cde6ef0e4803fb8a17308bb3eeb187c7",
-      "iterations": 200000,
-      "hash": "428fa8b9d6452167fce7bd947849b4ac623ab805c7b903b8799097b6e150da6c"
+      "hash": "5c86a8d4bec2e0ae60f490deb3b92276f9deed51d34bc4f9147d18c4f8816388"
     }
   },
   {
@@ -344,9 +64,359 @@
     "__access_level__": 2,
     "__participant_key__": "aldo junior pasqualini",
     "__password_hash__": {
-      "salt": "5f16aa1b6afb5090c70a4ade5a239568",
+      "salt": "fdaa22e95a520ba238f9e8093441bd1b",
       "iterations": 200000,
-      "hash": "d30997799ba48a0ecb59f1881489d1bcd0ead9c1bbc74c47a285aa68a101ba62"
+      "hash": "931bf9df1574112d822469d6975e2bd899466e66e647c43a28a12e77a37c0846"
+    }
+  },
+  {
+    "PARTICIPANTE": "Amadeu Donizete de Brito",
+    "EMAIL": "amadeu.brito@redeunifique.com.br",
+    "CARGO": "Coordenador de Almoxarifado",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "amadeu donizete de brito",
+    "__password_hash__": {
+      "salt": "4a9b84336f96ab0dfe512198e855ddbf",
+      "iterations": 200000,
+      "hash": "52ccd11f7d1c0633f4fb9a9b540f3fe69f53c09e338b4c78a11b60655c4b71d6"
+    }
+  },
+  {
+    "PARTICIPANTE": "Ana Paula de Oliveira Caldas",
+    "EMAIL": "ana.oliveira@redeunifique.com.br",
+    "CARGO": "Lider Recrutamento e Seleção",
+    "DIRETOR": "Cátia Carla Calliari",
+    "DIRETORIA": "Recursos Humanos",
+    "__access_level__": 3,
+    "__participant_key__": "ana paula de oliveira caldas",
+    "__password_hash__": {
+      "salt": "4d85ddf050c6b65f4ef5ba543de1aea1",
+      "iterations": 200000,
+      "hash": "a67a6f39d25c8c1cb0a4c4e055cea33c0f51131269a34494c164823fe3bb6851"
+    }
+  },
+  {
+    "PARTICIPANTE": "André José Vicente",
+    "EMAIL": "andre.vicente@redeunifique.com.br",
+    "CARGO": "Gerente Contábil",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "andré josé vicente",
+    "__password_hash__": {
+      "salt": "b010e310fca1825fbb9c9c455c5f285b",
+      "iterations": 200000,
+      "hash": "2abba6afa6e4d10b450f6d9613faed32489132e215d138a7c337f3feee4322ea"
+    }
+  },
+  {
+    "PARTICIPANTE": "Arthur Hans Kasdorf",
+    "EMAIL": "arthur.hk@redeunifique.com.br",
+    "CARGO": "Gerente Infraestrutura",
+    "DIRETOR": null,
+    "DIRETORIA": "Reporte ao Presidente",
+    "__access_level__": 3,
+    "__participant_key__": "arthur hans kasdorf",
+    "__password_hash__": {
+      "salt": "b5256d0aab0669c9e05caacc8803a59b",
+      "iterations": 200000,
+      "hash": "4adf39b1c097b89082e39c93482065a3ae83647be23e0c6ae944aa89822cbfcc"
+    }
+  },
+  {
+    "PARTICIPANTE": "Cátia Carla Calliari",
+    "EMAIL": null,
+    "CARGO": "DIRETOR",
+    "DIRETOR": null,
+    "DIRETORIA": null,
+    "__access_level__": 1,
+    "__participant_key__": "cátia carla calliari",
+    "__password_hash__": {
+      "salt": "58f8a0d0cbba269bae4e6efa89c6d5aa",
+      "iterations": 200000,
+      "hash": "9b29e322c3f45ac208c3983538a1cf4215a0dc9d04d1561a535e8dc7cec5a5a0"
+    }
+  },
+  {
+    "PARTICIPANTE": "Charles Gramkow",
+    "EMAIL": "charles.gramkow@redeunifique.com.br",
+    "CARGO": "Coordenador de Frota",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "charles gramkow",
+    "__password_hash__": {
+      "salt": "51d537213a1491854e1931d36dbbbd72",
+      "iterations": 200000,
+      "hash": "4b7805cafe44ba3135d421d24fc7d396bd6893ba881240a5a23d7fd94069b62c"
+    }
+  },
+  {
+    "PARTICIPANTE": "Danilo Voigt",
+    "EMAIL": "danilo.voigt@redeunifique.com.br",
+    "CARGO": "Coordenador de CGR",
+    "DIRETOR": "Adriano Struck",
+    "DIRETORIA": "Operações",
+    "__access_level__": 3,
+    "__participant_key__": "danilo voigt",
+    "__password_hash__": {
+      "salt": "593653a0831b4d171ef8399a5de4a291",
+      "iterations": 200000,
+      "hash": "f3cfa5770505d82ed22f558e85b2256427e62ca2b9bd819ff04c99e7501f03a6"
+    }
+  },
+  {
+    "PARTICIPANTE": "Dieysson José Maciel",
+    "EMAIL": "dieysson.maciel@redeunifique.com.br",
+    "CARGO": "Gerente Nacional B2C",
+    "DIRETOR": "Jair Francisco",
+    "DIRETORIA": "Mercado",
+    "__access_level__": 3,
+    "__participant_key__": "dieysson josé maciel",
+    "__password_hash__": {
+      "salt": "75ad11ac82bb9b49ce71a17c6467cab0",
+      "iterations": 200000,
+      "hash": "df071adce5020ce5847e769771e26d293fe28457101ec4d1949dfd46d62508af"
+    }
+  },
+  {
+    "PARTICIPANTE": "Flávio Henrique dos Santos",
+    "EMAIL": "flavio.santos@redeunifique.com.br",
+    "CARGO": "Gerente O&M Geral",
+    "DIRETOR": null,
+    "DIRETORIA": "Reporte ao Presidente",
+    "__access_level__": 3,
+    "__participant_key__": "flávio henrique dos santos",
+    "__password_hash__": {
+      "salt": "fdbe228492b40404f5668f3166ec1271",
+      "iterations": 200000,
+      "hash": "be6a8424c5b66b0e3cd4556cc4d7bb703d56708204e2fadba596a609545dcfe2"
+    }
+  },
+  {
+    "PARTICIPANTE": "Gabriel Assis Amancio",
+    "EMAIL": null,
+    "CARGO": "DIRETOR",
+    "DIRETOR": null,
+    "DIRETORIA": null,
+    "__access_level__": 2,
+    "__participant_key__": "gabriel assis amancio",
+    "__password_hash__": {
+      "salt": "c692c9ef84342d0d04a5feaf4bc5f2d1",
+      "iterations": 200000,
+      "hash": "779e2a4c50f73b31cb6b5e7a3e9aed8fca35f106333d42bf90431c88876671e1"
+    }
+  },
+  {
+    "PARTICIPANTE": "Jair Francisco",
+    "EMAIL": null,
+    "CARGO": "DIRETOR",
+    "DIRETOR": null,
+    "DIRETORIA": null,
+    "__access_level__": 2,
+    "__participant_key__": "jair francisco",
+    "__password_hash__": {
+      "salt": "d4357ac4770e118a4e21977859072faf",
+      "iterations": 200000,
+      "hash": "0e62a8b50c24e4f256d39c76cc178229e25764f36bcd7d08d2cb6a620da99c01"
+    }
+  },
+  {
+    "PARTICIPANTE": "Julian Eble",
+    "EMAIL": "julian.eble@redeunifique.com.br",
+    "CARGO": "Gerente Projetos",
+    "DIRETOR": null,
+    "DIRETORIA": "Reporte ao Presidente",
+    "__access_level__": 3,
+    "__participant_key__": "julian eble",
+    "__password_hash__": {
+      "salt": "11142a66408648a8fea478372335c771",
+      "iterations": 200000,
+      "hash": "964b4f29ad75fd2cf635bf23741055880a872d56544750d14bea13cf116ad38a"
+    }
+  },
+  {
+    "PARTICIPANTE": "Julio Cesar Conti",
+    "EMAIL": "julio.conti@redeunifique.com.br",
+    "CARGO": "Gerente Administração de Pessoal",
+    "DIRETOR": "Cátia Carla Calliari",
+    "DIRETORIA": "Recursos Humanos",
+    "__access_level__": 3,
+    "__participant_key__": "julio cesar conti",
+    "__password_hash__": {
+      "salt": "a7e296582c3d9b9fcd7a5adccc9e5d8e",
+      "iterations": 200000,
+      "hash": "f2b748961c50e5f452e2ba676b6b42065185d2b0d4d7b78c6d2ca48f41d731ce"
+    }
+  },
+  {
+    "PARTICIPANTE": "Julio Cesar Pessoa",
+    "EMAIL": "julio.pessoa@redeunifique.com.br",
+    "CARGO": "Gerentes de Dados e IA",
+    "DIRETOR": "Gabriel Assis Amancio",
+    "DIRETORIA": "Inovação e Transformação Digital",
+    "__access_level__": 3,
+    "__participant_key__": "julio cesar pessoa",
+    "__password_hash__": {
+      "salt": "8a2e50a9f2046d4f3c8d52dac5422238",
+      "iterations": 200000,
+      "hash": "ba8c40eeb82e41845d74b3065f805b9bbba012389d91227334fae81a94110e48"
+    }
+  },
+  {
+    "PARTICIPANTE": "Kathia Luzia Floriani",
+    "EMAIL": "kathia.floriani@redeunifique.com.br",
+    "CARGO": "Gerente Experiência do Cliente",
+    "DIRETOR": "Aldo Junior Pasqualini",
+    "DIRETORIA": "Marketing",
+    "__access_level__": 3,
+    "__participant_key__": "kathia luzia floriani",
+    "__password_hash__": {
+      "salt": "a8b8619d319aab5b3af7ce3926f01642",
+      "iterations": 200000,
+      "hash": "0fd8cccb342c7976bf9796a9ff8ede6bc5fcefea35e4f1480889e2ea4bacc7f0"
+    }
+  },
+  {
+    "PARTICIPANTE": "Leonardo Peters",
+    "EMAIL": "leonardo.peters@redeunifique.com.br",
+    "CARGO": "Gerente Inovação e Novos Negócios",
+    "DIRETOR": "Gabriel Assis Amancio",
+    "DIRETORIA": "Inovação e Transformação Digital",
+    "__access_level__": 3,
+    "__participant_key__": "leonardo peters",
+    "__password_hash__": {
+      "salt": "15b5deed86a46a9c1f2488ae2be120f1",
+      "iterations": 200000,
+      "hash": "4045e4abb6be7051de98b1f7ff52fd717a87178be3d2817ccec110d32329c2fa"
+    }
+  },
+  {
+    "PARTICIPANTE": "Luiz Bogo Jr",
+    "EMAIL": null,
+    "CARGO": "DIRETOR",
+    "DIRETOR": null,
+    "DIRETORIA": null,
+    "__access_level__": 2,
+    "__participant_key__": "luiz bogo jr",
+    "__password_hash__": {
+      "salt": "2f599729dffc41a3cadccec4f398dc0e",
+      "iterations": 200000,
+      "hash": "8b456ee5e520509ba43bf9d53604bf184e2f565bc6169435f06710eb1c495cc1"
+    }
+  },
+  {
+    "PARTICIPANTE": "Matheus Antonio Zatelli",
+    "EMAIL": "matheus.zatelli@redeunifique.com.br",
+    "CARGO": "Gerente Comunicação e Marketing",
+    "DIRETOR": "Aldo Junior Pasqualini",
+    "DIRETORIA": "Marketing",
+    "__access_level__": 3,
+    "__participant_key__": "matheus antonio zatelli",
+    "__password_hash__": {
+      "salt": "32c1e41704cf2f16bc9995b3b899ddac",
+      "iterations": 200000,
+      "hash": "21ee45fd2addd3ed10893a54020cc41d39ff32eb2566fd096e222d6cbc5d6909"
+    }
+  },
+  {
+    "PARTICIPANTE": "Naiara Cattoni",
+    "EMAIL": "naiara.cattoni@redeunifique.com.br",
+    "CARGO": "Gerente Governança Corporativa",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "naiara cattoni",
+    "__password_hash__": {
+      "salt": "55ec0ed6bb305d1bf95e570f01747934",
+      "iterations": 200000,
+      "hash": "9104d53e5d7aa37ee806ff5646aaf017e34432505fc4f73b6cc1444f50a05c3f"
+    }
+  },
+  {
+    "PARTICIPANTE": "Ricardo Clave da Silveira",
+    "EMAIL": "ricardo.clave@redeunifique.com.br",
+    "CARGO": "Gerente Nacional B2B e B2G",
+    "DIRETOR": "Jair Francisco",
+    "DIRETORIA": "Mercado",
+    "__access_level__": 3,
+    "__participant_key__": "ricardo clave da silveira",
+    "__password_hash__": {
+      "salt": "1e7dd682110bfc32392f7278254ab8c3",
+      "iterations": 200000,
+      "hash": "dff7254cfcdc572ede54a747ba208ce235cd125fbf719cdcfb6ab4feb1dff01c"
+    }
+  },
+  {
+    "PARTICIPANTE": "Rodrigo Cipriani",
+    "EMAIL": "rodrigo.cipriani@redeunifique.com.br",
+    "CARGO": "Gerente Financeiro",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "rodrigo cipriani",
+    "__password_hash__": {
+      "salt": "dffd707bdcd23ec3f724b06d279370ac",
+      "iterations": 200000,
+      "hash": "54243adfa2ad499601556fc5d5651193d88a44f53cdca35ba659cf878fa9839e"
+    }
+  },
+  {
+    "PARTICIPANTE": "Rubia Camila Richter",
+    "EMAIL": "rubia.richter@redeunifique.com.br",
+    "CARGO": "Coorde Desenv Cultura e Perfor",
+    "DIRETOR": "Cátia Carla Calliari",
+    "DIRETORIA": "Recursos Humanos",
+    "__access_level__": 4,
+    "__participant_key__": "rubia camila richter",
+    "__password_hash__": {
+      "salt": "d082442be7d496443841a4c51390172d",
+      "iterations": 200000,
+      "hash": "4bac88927f75d18f2d4fe7a2313222af571f3c07d50979817d213a56d2637219"
+    }
+  },
+  {
+    "PARTICIPANTE": "Sergio dos Santos Junior",
+    "EMAIL": "sergio.santos@redeunifique.com.br",
+    "CARGO": "Gerente Mercado",
+    "DIRETOR": "Jair Francisco",
+    "DIRETORIA": "Mercado",
+    "__access_level__": 3,
+    "__participant_key__": "sergio dos santos junior",
+    "__password_hash__": {
+      "salt": "c99367f8d3a8602f9f9ad4980d9a6fe2",
+      "iterations": 200000,
+      "hash": "7eb279660c40aca5bc54d71a1d10855e5b037df92aaef2c12d82e85628b6b0aa"
+    }
+  },
+  {
+    "PARTICIPANTE": "Siegfried Kreutzfeld Neto",
+    "EMAIL": "siegfried.neto@redeunifique.com.br",
+    "CARGO": "Gerente Sistemas",
+    "DIRETOR": "Gabriel Assis Amancio",
+    "DIRETORIA": "Inovação e Transformação Digital",
+    "__access_level__": 3,
+    "__participant_key__": "siegfried kreutzfeld neto",
+    "__password_hash__": {
+      "salt": "a35ea44a78a74ee5d019472391c1c3e5",
+      "iterations": 200000,
+      "hash": "f736c43fdc3b62736a607d642bf5baa1cb245e2e28955ce6a8f2061871ae7e93"
+    }
+  },
+  {
+    "PARTICIPANTE": "Wilson de Alcantra Machado Silva",
+    "EMAIL": "wilson.silva@redeunifique.com.br",
+    "CARGO": "Gerente Assuntos Regulatórios",
+    "DIRETOR": "Luiz Bogo Jr",
+    "DIRETORIA": "Financeira, Governança Corporativa e Relacionamento com Investidores",
+    "__access_level__": 3,
+    "__participant_key__": "wilson de alcantra machado silva",
+    "__password_hash__": {
+      "salt": "17c838d329fb8ba01bf741e17516efdb",
+      "iterations": 200000,
+      "hash": "cfefb55f7a259a779d691f96ade7f41231c23e2ec38c2b4bccb68337ad83ee00"
     }
   }
 ]
