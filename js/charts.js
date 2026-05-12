@@ -327,26 +327,45 @@ export function renderEntrevista(container, interviews, focusName, competencyFil
 // Aba Desenvolvimento — Cardápio de Ações por competência baseado na média
 // ===========================================================
 
+// Faixas oficiais da escala de avaliação (4 níveis):
+//   1,00 — 1,75  → Abaixo do esperado
+//   1,76 — 2,51  → Atende parcialmente
+//   2,52 — 3,27  → Atende plenamente
+//   3,28 — 4,00  → Supera o padrão esperado
+//
+// O cardápio de ações agrupa "Abaixo" e "Atende parcialmente" em uma só
+// coluna (3 níveis na planilha), mas a legenda mostrada ao usuário é a do
+// nível real (4 níveis).
+
 const LEVEL_INFO = {
-  abaixo_atende_parcialmente: {
-    label: "Abaixo do esperado / Atende parcialmente",
-    color: "#F59E0B",
+  abaixo: {
+    label: "Abaixo do esperado",
+    color: "#DC2626",
+    bucket: "abaixo_atende_parcialmente",
   },
-  atende_plenamente: {
+  parcialmente: {
+    label: "Atende parcialmente",
+    color: "#F59E0B",
+    bucket: "abaixo_atende_parcialmente",
+  },
+  plenamente: {
     label: "Atende plenamente",
     color: "#10B981",
+    bucket: "atende_plenamente",
   },
   supera: {
     label: "Supera o padrão esperado",
     color: "#1F1B8E",
+    bucket: "supera",
   },
 };
 
-/** Mapeia média numérica para a faixa do cardápio. NÃO arredonda a média. */
+/** Mapeia média numérica para um dos 4 níveis. NÃO arredonda a média. */
 function mapMediaToLevel(media) {
   if (typeof media !== "number" || Number.isNaN(media)) return null;
-  if (media < 2.51) return "abaixo_atende_parcialmente";
-  if (media < 3.51) return "atende_plenamente";
+  if (media <= 1.75) return "abaixo";
+  if (media <= 2.51) return "parcialmente";
+  if (media <= 3.27) return "plenamente";
   return "supera";
 }
 
@@ -432,7 +451,8 @@ export function renderDesenvolvimento(container, interviews, actions, focusName)
         continue;
       }
 
-      const blk = compMeta.niveis[level] || {};
+      const bucket = LEVEL_INFO[level].bucket;
+      const blk = compMeta.niveis[bucket] || {};
       const cardsRow = document.createElement("div");
       cardsRow.className = "actions-cards";
 
