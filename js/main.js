@@ -234,10 +234,15 @@ function enterDashboard() {
   setupSyncBox(level);
 
   // Helper: lista só PARTICIPANTES de fato (Acesso 3) dentre os permitidos.
-  // Niveis 1 e 2 sao consumidores do app, nao aparecem como opcoes.
+  // Niveis 1 e 2 sao consumidores administradores. Nivel 4 tambem eh consumidor,
+  // mas pode ter dados proprios — entao se o logado for nivel 4, incluimos ele.
   const realParticipants = session.allowedParticipants.filter((name) => {
     const r = access.find((a) => a.PARTICIPANTE === name);
-    return r && Number(r.__access_level__) === 3;
+    if (!r) return false;
+    const lvl = Number(r.__access_level__);
+    if (lvl === 3) return true;
+    if (lvl === 4 && name === me) return true;
+    return false;
   });
 
   // Filtro Participante (multi-select)
@@ -386,10 +391,16 @@ function enterDashboard() {
  * Aplica o filtro completo (allowed + diretor + foco) e devolve as 3 listas filtradas.
  */
 function getFilteredData() {
-  // 1) restringe pelo nivel (allowedParticipants), apenas Acesso 3
+  // 1) restringe pelo nivel (allowedParticipants).
+  //    Acesso 3 = participante padrão. Acesso 4 só aparece se for o próprio logado.
+  const me = session?.row?.PARTICIPANTE;
   const realParticipants = session.allowedParticipants.filter((name) => {
     const r = access.find((a) => a.PARTICIPANTE === name);
-    return r && Number(r.__access_level__) === 3;
+    if (!r) return false;
+    const lvl = Number(r.__access_level__);
+    if (lvl === 3) return true;
+    if (lvl === 4 && name === me) return true;
+    return false;
   });
   let allowedSet = new Set(realParticipants.map(normalizeText));
 
