@@ -233,17 +233,18 @@ function enterDashboard() {
   renderSyncStatus();
   setupSyncBox(level);
 
-  // Helper: lista só PARTICIPANTES de fato (Acesso 3) dentre os permitidos.
-  // Niveis 1 e 2 sao consumidores administradores. Nivel 4 tambem eh consumidor,
-  // mas pode ter dados proprios — entao se o logado for nivel 4, incluimos ele.
-  const realParticipants = session.allowedParticipants.filter((name) => {
-    const r = access.find((a) => a.PARTICIPANTE === name);
-    if (!r) return false;
-    const lvl = Number(r.__access_level__);
-    if (lvl === 3) return true;
-    if (lvl === 4 && name === me) return true;
-    return false;
-  });
+  // Helper: lista os participantes que possuem dados de fato (entrevista,
+  // FACET5 ou questionário) dentre os permitidos pelo nível de acesso.
+  // Antes filtrávamos por __access_level__ === 3, mas isso excluía Acesso 4
+  // (que também é participante). Agora vai por presença real de dados.
+  const peopleWithData = new Set();
+  for (const r of interviews) peopleWithData.add(normalizeText(r.Participante));
+  for (const r of facet) peopleWithData.add(normalizeText(r.Participante));
+  for (const r of career) peopleWithData.add(normalizeText(r.Participante));
+
+  const realParticipants = session.allowedParticipants.filter((name) =>
+    peopleWithData.has(normalizeText(name))
+  );
 
   // Filtro Participante (multi-select)
   const partSelect = document.getElementById("participant-filter");
@@ -391,17 +392,15 @@ function enterDashboard() {
  * Aplica o filtro completo (allowed + diretor + foco) e devolve as 3 listas filtradas.
  */
 function getFilteredData() {
-  // 1) restringe pelo nivel (allowedParticipants).
-  //    Acesso 3 = participante padrão. Acesso 4 só aparece se for o próprio logado.
-  const me = session?.row?.PARTICIPANTE;
-  const realParticipants = session.allowedParticipants.filter((name) => {
-    const r = access.find((a) => a.PARTICIPANTE === name);
-    if (!r) return false;
-    const lvl = Number(r.__access_level__);
-    if (lvl === 3) return true;
-    if (lvl === 4 && name === me) return true;
-    return false;
-  });
+  // 1) restringe pelos permitidos (allowedParticipants) E que tenham dados de fato.
+  const peopleWithData = new Set();
+  for (const r of interviews) peopleWithData.add(normalizeText(r.Participante));
+  for (const r of facet) peopleWithData.add(normalizeText(r.Participante));
+  for (const r of career) peopleWithData.add(normalizeText(r.Participante));
+
+  const realParticipants = session.allowedParticipants.filter((name) =>
+    peopleWithData.has(normalizeText(name))
+  );
   let allowedSet = new Set(realParticipants.map(normalizeText));
 
   // 2) filtro por diretor (intersecao)
