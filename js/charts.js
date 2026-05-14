@@ -142,6 +142,7 @@ export function renderCompetencias(container, interviews, focusName) {
       text: valores.map((v) => v.toFixed(2)),
       textposition: "outside",
       cliponaxis: false,
+      hovertemplate: "<b>%{x}</b><br>Média: %{y:.2f}<extra></extra>",
     }],
     {
       ...PLOT_LAYOUT,
@@ -154,82 +155,126 @@ export function renderCompetencias(container, interviews, focusName) {
 
   container.appendChild(chartRow);
 
-  // Modo "todos": gráfico comparativo - barras agrupadas (1 trace por participante, x=competências)
+  // Modo "todos": gráfico comparativo + tabela com ordenação
   if (!focusName) {
+    const partsList = Array.from(new Set(records.map((r) => r.Participante).filter(Boolean)))
+      .sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+    // Helper que calcula a média da pessoa naquela competência
+    const noteOf = (p, c) => {
+      const rs = records.filter((r) => r.Participante === p && r.Competencia === c);
+      let v = rs.find((x) => typeof x.MediaCompetencia === "number")?.MediaCompetencia;
+      if (typeof v !== "number") {
+        const notas = rs.map((x) => x.Nota).filter((n) => typeof n === "number");
+        v = notas.length ? mean(notas) : null;
+      }
+      return v;
+    };
+
+    // Controle de ordenação
+    const sortBar = document.createElement("div");
+    sortBar.className = "sort-bar";
+    const compOpts = competencias.map((c) => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+    sortBar.innerHTML = `
+      <label>Ordenar por:</label>
+      <select id="sort-comp"><option value="">Alfabética</option>${compOpts}</select>
+      <select id="sort-dir">
+        <option value="desc">Maior → menor</option>
+        <option value="asc">Menor → maior</option>
+      </select>
+    `;
+    container.appendChild(sortBar);
+
+    // Container do gráfico
     const card2 = makeCard("Comparativo por participante");
     const chartRow2 = document.createElement("div");
     chartRow2.className = "chart-row";
     chartRow2.appendChild(card2);
     container.appendChild(chartRow2);
 
-    const partsList = Array.from(new Set(records.map((r) => r.Participante).filter(Boolean))).sort();
-    const traces = partsList.map((p) => {
-      const ys = competencias.map((c) => {
-        const rs = records.filter((r) => r.Participante === p && r.Competencia === c);
-        const vs = rs.map((r) => typeof r.Nota === "number" ? r.Nota : (typeof r.MediaCompetencia === "number" ? r.MediaCompetencia : null)).filter((v) => v !== null);
-        return vs.length ? mean(vs) : null;
-      });
-      return {
-        type: "bar",
-        name: p,
-        x: competencias,
-        y: ys,
-        text: ys.map((v) => v === null ? "" : v.toFixed(1)),
-        textposition: "outside",
-        textfont: { size: 10 },
-        cliponaxis: false,
-      };
+    container.appendChild(sectionTitle("Tabela de notas"));
+    const tableWrap = document.createElement("div");
+    tableWrap.className = "table-wrap";
+    container.appendChild(tableWrap);
+
+    // Gera cor única por participante via HSL distribuído em 360°
+    const COLORS = partsList.map((_, i) => {
+      const hue = Math.round((i * 360) / partsList.length);
+      return `hsl(${hue}, 70%, 45%)`;
     });
 
-    // Altura aumenta um pouco se tiver muitos participantes (legenda fica grande)
     const target = card2.querySelector(".plot-target");
     const h = Math.min(700, Math.max(420, 380 + Math.ceil(partsList.length / 4) * 22));
     target.style.height = h + "px";
     target.style.minHeight = h + "px";
 
-    // legenda mais espaçada se houver muita gente (evita invadir o gráfico)
-    const legendRows = Math.ceil(partsList.length / 4);
-    const legendBottomSpace = 50 + legendRows * 22;
-    plotResponsive(
-      target,
-      traces,
-      {
-        ...PLOT_LAYOUT,
-        barmode: "group",
-        margin: { l: 60, r: 24, t: 24, b: legendBottomSpace, autoexpand: true },
-        xaxis: { automargin: true, tickangle: 0 },
-        yaxis: { title: "Nota", range: [0, 10], automargin: true },
-        legend: { orientation: "h", y: -0.25, x: 0, xanchor: "left", yanchor: "top", font: { size: 11 } },
-      },
-      PLOT_CONFIG
-    );
-  }
+    function renderComparativo() {
+      const sortComp = document.getElementById("sort-comp").value;
+      const sortDir = document.getElementById("sort-dir").value; // asc | desc
 
-  // Tabela
-  if (!focusName) {
-    container.appendChild(sectionTitle("Tabela de notas"));
-    const wrap = document.createElement("div");
-    wrap.className = "table-wrap";
-    const compsList = Array.from(new Set(records.map((r) => r.Competencia).filter(Boolean)));
-    const partsList = Array.from(new Set(records.map((r) => r.Participante).filter(Boolean))).sort();
-    let html = `<table><thead><tr><th>Participante</th>${compsList.map((c) => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead><tbody>`;
-    for (const p of partsList) {
-      const cells = compsList.map((c) => {
-        // Mesma lógica do gráfico: usa MediaCompetencia se houver,
-        // senão calcula a média das notas individuais das perguntas.
-        const rs = records.filter((x) => x.Participante === p && x.Competencia === c);
-        let v = rs.find((x) => typeof x.MediaCompetencia === "number")?.MediaCompetencia;
-        if (typeof v !== "number") {
-          const notas = rs.map((x) => x.Nota).filter((n) => typeof n === "number");
-          v = notas.length ? mean(notas) : null;
-        }
-        return `<td>${typeof v === "number" ? v.toFixed(1) : "—"}</td>`;
+      // Ordena a lista de participantes
+      let ordered = [...partsList];
+      if (sortComp) {
+        ordered.sort((a, b) => {
+          const va = noteOf(a, sortComp);
+          const vb = noteOf(b, sortComp);
+          const aVal = va === null ? -Infinity : va;
+          const bVal = vb === null ? -Infinity : vb;
+          return sortDir === "desc" ? bVal - aVal : aVal - bVal;
+        });
+      }
+
+      // Mapeia cor preservando uma cor por nome (sem cambiar quando reordena)
+      const colorByName = new Map(partsList.map((n, i) => [n, COLORS[i]]));
+
+      const traces = ordered.map((p) => {
+        const ys = competencias.map((c) => noteOf(p, c));
+        return {
+          type: "bar",
+          name: p,
+          x: competencias,
+          y: ys,
+          marker: { color: colorByName.get(p) },
+          text: ys.map((v) => v === null ? "" : v.toFixed(1)),
+          textposition: "outside",
+          textfont: { size: 10 },
+          cliponaxis: false,
+          hovertemplate: "<b>%{x}</b><br>" + escapeHtml(p) + ": %{y:.2f}<extra></extra>",
+        };
       });
-      html += `<tr><td><strong>${escapeHtml(p)}</strong></td>${cells.join("")}</tr>`;
+
+      const legendRows = Math.ceil(ordered.length / 4);
+      const legendBottomSpace = 50 + legendRows * 22;
+      plotResponsive(
+        target,
+        traces,
+        {
+          ...PLOT_LAYOUT,
+          barmode: "group",
+          margin: { l: 60, r: 24, t: 24, b: legendBottomSpace, autoexpand: true },
+          xaxis: { automargin: true, tickangle: 0 },
+          yaxis: { title: "Nota", range: [0, 10], automargin: true },
+          legend: { orientation: "h", y: -0.25, x: 0, xanchor: "left", yanchor: "top", font: { size: 11 } },
+        },
+        PLOT_CONFIG
+      );
+
+      // Tabela (mesma ordem)
+      let html = `<table><thead><tr><th>Participante</th>${competencias.map((c) => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead><tbody>`;
+      for (const p of ordered) {
+        const cells = competencias.map((c) => {
+          const v = noteOf(p, c);
+          return `<td>${typeof v === "number" ? v.toFixed(1) : "—"}</td>`;
+        });
+        html += `<tr><td><strong>${escapeHtml(p)}</strong></td>${cells.join("")}</tr>`;
+      }
+      html += "</tbody></table>";
+      tableWrap.innerHTML = html;
     }
-    html += "</tbody></table>";
-    wrap.innerHTML = html;
-    container.appendChild(wrap);
+
+    sortBar.querySelector("#sort-comp").addEventListener("change", renderComparativo);
+    sortBar.querySelector("#sort-dir").addEventListener("change", renderComparativo);
+    renderComparativo();
   }
 }
 
@@ -262,7 +307,12 @@ export function renderEntrevista(container, interviews, focusName, competencyFil
     compMap.get(key).push(r);
   }
 
-  for (const [participante, compMap] of byParticipant.entries()) {
+  // Ordena participantes alfabeticamente (mesma ordem do filtro de Pessoas)
+  const orderedNames = Array.from(byParticipant.keys())
+    .sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+  for (const participante of orderedNames) {
+    const compMap = byParticipant.get(participante);
     const block = document.createElement("div");
     block.className = "entrevista-block";
 
@@ -284,8 +334,12 @@ export function renderEntrevista(container, interviews, focusName, competencyFil
 
       const first = rows[0];
       const media = first?.MediaCompetencia;
-      const mediaHtml = (typeof media === "number")
-        ? `<span class="badge">Média ${media.toFixed(2)}</span>` : "";
+      let mediaHtml = "";
+      if (typeof media === "number") {
+        const lvl = mapMediaToLevel(media);
+        const color = lvl ? LEVEL_INFO[lvl].color : "#9CA3AF";
+        mediaHtml = `<span class="badge" style="background:${color}">Média ${media.toFixed(2)}</span>`;
+      }
 
       const title = document.createElement("div");
       title.className = "entrevista-comp";
