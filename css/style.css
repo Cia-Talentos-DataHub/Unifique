@@ -79,8 +79,8 @@ h3 { font-size: 1rem; }
 .brand-product {
   color: var(--text-soft);
   font-weight: 600;
-  letter-spacing: 0.01em;
-  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   font-size: 1rem;
 }
 .brand-product.sm { font-size: 0.78rem; }
