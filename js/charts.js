@@ -227,12 +227,16 @@ export function renderCompetencias(container, interviews, focusName) {
       // Mapeia cor preservando uma cor por nome (sem cambiar quando reordena)
       const colorByName = new Map(partsList.map((n, i) => [n, COLORS[i]]));
 
+      // Se ordenando por competência específica: mostra só essa competência no x.
+      // Caso contrário (alfabética): mostra todas.
+      const xCols = sortComp ? [sortComp] : competencias;
+
       const traces = ordered.map((p) => {
-        const ys = competencias.map((c) => noteOf(p, c));
+        const ys = xCols.map((c) => noteOf(p, c));
         return {
           type: "bar",
           name: p,
-          x: competencias,
+          x: xCols,
           y: ys,
           marker: { color: colorByName.get(p) },
           text: ys.map((v) => v === null ? "" : v.toFixed(1)),
@@ -259,10 +263,10 @@ export function renderCompetencias(container, interviews, focusName) {
         PLOT_CONFIG
       );
 
-      // Tabela (mesma ordem)
-      let html = `<table><thead><tr><th>Participante</th>${competencias.map((c) => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead><tbody>`;
+      // Tabela: mesmas colunas que o gráfico
+      let html = `<table><thead><tr><th>Participante</th>${xCols.map((c) => `<th>${escapeHtml(c)}</th>`).join("")}</tr></thead><tbody>`;
       for (const p of ordered) {
-        const cells = competencias.map((c) => {
+        const cells = xCols.map((c) => {
           const v = noteOf(p, c);
           return `<td>${typeof v === "number" ? v.toFixed(1) : "—"}</td>`;
         });
