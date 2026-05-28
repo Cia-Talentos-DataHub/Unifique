@@ -148,7 +148,7 @@ export function renderCompetencias(container, interviews, focusName) {
       ...PLOT_LAYOUT,
       margin: { l: 60, r: 24, t: 24, b: 120, autoexpand: true },
       xaxis: { automargin: true, tickangle: 0 },
-      yaxis: { title: "Nota", range: [0, Math.max(5, ...valores) + 0.8], automargin: true },
+      yaxis: { title: "Nota", range: [0, 4], automargin: true },
     },
     PLOT_CONFIG
   );
@@ -257,7 +257,7 @@ export function renderCompetencias(container, interviews, focusName) {
           barmode: "group",
           margin: { l: 60, r: 24, t: 24, b: legendBottomSpace, autoexpand: true },
           xaxis: { automargin: true, tickangle: 0 },
-          yaxis: { title: "Nota", range: [0, 10], automargin: true },
+          yaxis: { title: "Nota", range: [0, 4], automargin: true },
           legend: { orientation: "h", y: -0.25, x: 0, xanchor: "left", yanchor: "top", font: { size: 11 } },
         },
         PLOT_CONFIG
