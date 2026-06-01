@@ -403,11 +403,15 @@ function getFilteredData() {
   );
   let allowedSet = new Set(realParticipants.map(normalizeText));
 
-  // 2) filtro por diretor (intersecao)
+  // 2) filtro por diretor (intersecao). Inclui o próprio diretor junto
+  //    com sua equipe — ele não tem DIRETOR=ele mesmo, então é tratado à parte.
   if (activeDirector) {
     const dirAllowed = new Set(
       access
-        .filter((r) => String(r.DIRETOR || "").trim() === activeDirector)
+        .filter((r) =>
+          String(r.DIRETOR || "").trim() === activeDirector ||
+          String(r.PARTICIPANTE || "").trim() === activeDirector
+        )
         .map((r) => normalizeText(r.PARTICIPANTE))
     );
     allowedSet = new Set([...allowedSet].filter((x) => dirAllowed.has(x)));
