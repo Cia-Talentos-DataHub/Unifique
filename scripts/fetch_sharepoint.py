@@ -122,30 +122,67 @@ def parse_server_relative_path(final_url: str) -> str:
     return urllib.parse.unquote(raw_id)
 
 
-def list_folder(session: requests.Session, share_url: str, ext: str) -> List[Dict]:
-    """
-    Resolve o link público da pasta e lista os arquivos via API REST do SharePoint.
-    Retorna lista de {Name, ServerRelativeUrl}.
-    """
-    final_url = open_share(session, share_url)
-    server_rel = parse_server_relative_path(final_url)  # ex: /sites/Arquivos/.../pdfs_facet5
-
-    # Identifica a coleção do site (/sites/Arquivos)
+def _site_url_from(final_url: str, server_rel: str) -> str:
+    """Identifica a URL base do site (até /sites/<nome>) a partir de um caminho."""
     parts = server_rel.split("/")
     if len(parts) < 3 or parts[1] != "sites":
         raise RuntimeError(f"Estrutura de site inesperada: {server_rel}")
-    site_url = f"{urllib.parse.urlparse(final_url).scheme}://{urllib.parse.urlparse(final_url).netloc}/sites/{parts[2]}"
+    return (
+        f"{urllib.parse.urlparse(final_url).scheme}://"
+        f"{urllib.parse.urlparse(final_url).netloc}/sites/{parts[2]}"
+    )
 
+
+def _list_folder_files(session, site_url: str, folder_rel: str) -> List[Dict]:
     api = (
         f"{site_url}/_api/web/GetFolderByServerRelativeUrl("
-        f"'{urllib.parse.quote(server_rel)}')/Files?$select=Name,ServerRelativeUrl,Length&$top=500"
+        f"'{urllib.parse.quote(folder_rel)}')/Files?$select=Name,ServerRelativeUrl,Length&$top=500"
+    )
+    r = session.get(api, headers={"Accept": "application/json;odata=nometadata"}, timeout=30)
+    r.raise_for_status()
+    return r.json().get("value", [])
+
+
+def _list_folder_subfolders(session, site_url: str, folder_rel: str) -> List[Dict]:
+    api = (
+        f"{site_url}/_api/web/GetFolderByServerRelativeUrl("
+        f"'{urllib.parse.quote(folder_rel)}')/Folders?$select=Name,ServerRelativeUrl&$top=500"
     )
     r = session.get(api, headers={"Accept": "application/json;odata=nometadata"}, timeout=30)
     r.raise_for_status()
     items = r.json().get("value", [])
+    # SharePoint costuma incluir pastas internas tipo "Forms" — ignora.
+    return [f for f in items if not f.get("Name", "").startswith("Forms")]
+
+
+def list_folder(session: requests.Session, share_url: str, ext: str) -> List[Dict]:
+    """
+    Resolve o link público da pasta e lista TODOS os arquivos (recursivamente,
+    incluindo subpastas) via API REST do SharePoint.
+    Retorna lista de {Name, ServerRelativeUrl, _subpath}.
+    """
+    final_url = open_share(session, share_url)
+    root_rel = parse_server_relative_path(final_url)
+    site_url = _site_url_from(final_url, root_rel)
+
+    # BFS pelas subpastas
+    all_items: List[Dict] = []
+    queue = [(root_rel, "")]  # (caminho absoluto, caminho relativo à raiz da pasta compartilhada)
+    while queue:
+        rel, subpath = queue.pop(0)
+        files = _list_folder_files(session, site_url, rel)
+        for f in files:
+            f["_subpath"] = subpath
+            all_items.append(f)
+        for sub in _list_folder_subfolders(session, site_url, rel):
+            sub_name = sub["Name"]
+            sub_rel = sub["ServerRelativeUrl"]
+            new_subpath = f"{subpath}/{sub_name}" if subpath else sub_name
+            queue.append((sub_rel, new_subpath))
+
     if ext:
-        items = [x for x in items if x.get("Name", "").lower().endswith(ext.lower())]
-    return items
+        all_items = [x for x in all_items if x.get("Name", "").lower().endswith(ext.lower())]
+    return all_items
 
 
 def download_folder_files(
@@ -153,17 +190,19 @@ def download_folder_files(
 ) -> int:
     items = list_folder(session, share_url, ext)
     dest_dir.mkdir(parents=True, exist_ok=True)
-    print(f"  {len(items)} arquivos para baixar")
-    base = "https://ciadetalentos.sharepoint.com"  # mesmo netloc das pastas
-    netloc = urllib.parse.urlparse(open_share(session, share_url)).netloc
+    print(f"  {len(items)} arquivos para baixar (incluindo subpastas)")
+    final_url = open_share(session, share_url)
+    netloc = urllib.parse.urlparse(final_url).netloc
     base = f"https://{netloc}"
     n = 0
     for it in items:
         name = it["Name"]
         srel = it["ServerRelativeUrl"]
+        subpath = it.get("_subpath", "")
         dl = f"{base}{urllib.parse.quote(srel)}"
-        dest = dest_dir / name
+        dest = (dest_dir / subpath / name) if subpath else (dest_dir / name)
         try:
+            dest.parent.mkdir(parents=True, exist_ok=True)
             r = session.get(dl, timeout=120, stream=True)
             r.raise_for_status()
             with open(dest, "wb") as f:
@@ -171,7 +210,8 @@ def download_folder_files(
                     if ch:
                         f.write(ch)
             n += 1
-            print(f"   OK  {name}  ({int(it.get('Length') or 0)} bytes)")
+            tag = f" [{subpath}]" if subpath else ""
+            print(f"   OK  {name}{tag}  ({int(it.get('Length') or 0)} bytes)")
         except Exception as e:
             print(f"   ERR {name}: {e}")
     return n
@@ -192,7 +232,9 @@ def main():
         if not url:
             print(f"-- {name}: sem URL configurado, pulando.")
             continue
-        print(f"-> {name} ({kind})")
+        # Loga origem (parcial, sem token completo) pra facilitar diagnóstico
+        url_short = url.split("?", 1)[0] + "..." if len(url) > 100 else url
+        print(f"-> {name} ({kind})  fonte: {url_short}")
         try:
             if kind == "file":
                 size = download_file(session, url, args.out / name)
