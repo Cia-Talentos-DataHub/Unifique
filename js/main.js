@@ -21,6 +21,7 @@ let actions = {};
 let session = null;          // { row, allowedParticipants }
 let activeFocus = [];        // [] = todos os permitidos
 let activeDirector = "";     // "" = qualquer diretor
+let activeCargos = [];       // [] = todos os cargos
 let activeCompetency = "";   // "" = todas as competencias
 
 /** Dispara o workflow via Cloudflare Worker (que repassa pro GitHub usando PAT). */
@@ -349,6 +350,55 @@ function enterDashboard() {
     }
   }
 
+  // Filtro Cargo (multi-select). Popula com os cargos dos participantes visíveis
+  // (acompanha mudanças do filtro de diretor).
+  const cargoSelect = document.getElementById("cargo-filter");
+  cargoSelect.multiple = true;
+
+  function repopulateCargos(visibleNames) {
+    const set = new Set();
+    for (const name of visibleNames) {
+      const r = access.find((a) => a.PARTICIPANTE === name);
+      const c = r && r.CARGO ? String(r.CARGO).trim() : "";
+      if (c) set.add(c);
+    }
+    const cargos = Array.from(set).sort((a, b) => a.localeCompare(b, "pt-BR"));
+    cargoSelect.innerHTML = "";
+    cargoSelect.size = Math.min(Math.max(cargos.length, 4), 8);
+    for (const c of cargos) {
+      const opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c;
+      if (activeCargos.includes(c)) opt.selected = true;
+      cargoSelect.appendChild(opt);
+    }
+    // remove da seleção cargos que não existem mais
+    activeCargos = activeCargos.filter((c) => cargos.includes(c));
+  }
+  repopulateCargos(realParticipants);
+
+  cargoSelect.addEventListener("change", () => {
+    activeCargos = Array.from(cargoSelect.selectedOptions).map((o) => o.value);
+    rerenderActiveTab();
+  });
+
+  // Hook: quando o filtro de Diretor muda, repopula cargos com a equipe nova
+  const originalDirHandler = dirSelect.onchange;
+  if (level === 1 || level === 4) {
+    dirSelect.addEventListener("change", () => {
+      // O handler principal já zera activeFocus e repopula participants;
+      // aqui sincronizamos os cargos com a nova lista visível.
+      const visible = Array.from(partSelect.options).map((o) => o.value);
+      repopulateCargos(visible);
+    });
+  }
+
+  // Hook: quando muda Pessoas, também repopula cargos (mantendo seleção)
+  partSelect.addEventListener("change", () => {
+    const visible = Array.from(partSelect.options).map((o) => o.value);
+    repopulateCargos(visible);
+  });
+
   // Filtro Competência (Entrevista)
   const compFilter = document.getElementById("competency-filter");
   const compsList = Array.from(
@@ -379,6 +429,7 @@ function enterDashboard() {
     session = null;
     activeFocus = [];
     activeDirector = "";
+    activeCargos = [];
     activeCompetency = "";
     dashboardView.hidden = true;
     loginView.hidden = false;
@@ -415,6 +466,17 @@ function getFilteredData() {
         .map((r) => normalizeText(r.PARTICIPANTE))
     );
     allowedSet = new Set([...allowedSet].filter((x) => dirAllowed.has(x)));
+  }
+
+  // 2.5) filtro por cargo (intersecao)
+  if (activeCargos && activeCargos.length) {
+    const cargoSet = new Set(activeCargos.map((c) => normalizeText(c)));
+    const namesWithCargo = new Set(
+      access
+        .filter((r) => cargoSet.has(normalizeText(r.CARGO || "")))
+        .map((r) => normalizeText(r.PARTICIPANTE))
+    );
+    allowedSet = new Set([...allowedSet].filter((x) => namesWithCargo.has(x)));
   }
 
   // 3) Foco em participantes selecionados (multi)
