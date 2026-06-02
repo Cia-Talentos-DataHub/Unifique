@@ -16,22 +16,6 @@
     "Emocionalidade_desc": "Seu estilo é razoavelmente volátil, com tendência a reagir aos eventos, mais movido pelas emoções que pela razão. Parece que as coisas lhe atingem e você claramente apresenta fortes alterações de humor. Essas mudanças podem não ser aparentes para outras pessoas, mas são certamente reais para você. Conseqüentemente, pode parecer que você assume uma visão negativa ou pessimista das coisas e que acha difícil enxergar o lado positivo. Outros poderão considerá-lo interessante ou mesmo entusiasmado, mas de alguma maneira volúvel e inconsistente."
   },
   {
-    "Participante": "Catia Carla Calliari",
-    "Familia": "Idealista",
-    "Perfil": "Pensa profundamente | Preocupado/a com questões filosóficas | Individualista - estilo incomum | Segue seu próprio caminho | Pode ter difículdade de colocar as coisas em prática",
-    "__participant_key__": "catia carla calliari",
-    "Determinação": 5.7,
-    "Determinação_desc": "Você tem um estilo de forte determinação, mas tende a agir independentemente de maneira tranqüila e de conseguir que as coisas sejam feitas sem que haja discussões ou alvoroço. Na verdade, é provável que você evite um confronto direto, o que pode causar a impressão, a algumas pessoas, de que você está desistindo.",
-    "Energia": 4.7,
-    "Energia_desc": "As pessoas o verão como alguém reservado, que leva um tempo para conhecer as pessoas e que se sente melhor quando está com pessoas que já conhece há algum tempo. Pode parecer que você demora para fazer amizades, mas você trabalhará bem em uma equipe quando lhe é dado tempo para se ajustar. Você precisa de sua privacidade.",
-    "Afetividade": 7.4,
-    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
-    "Controle": 4.1,
-    "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
-    "Emocionalidade": 7.2,
-    "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
-  },
-  {
     "Participante": "Aldo Junior Pasqualini",
     "Familia": "Generalista",
     "Perfil": "Entusiasmado/a, sociável e divertido/a | Preparado/a para relacionar-se com qualquer pessoa | Exigente, porém flexível | Adapta-se a pessoas ou circunstâncias | Pode representar todas as coisas para todas as pessoas",
@@ -94,6 +78,22 @@
     "Controle_desc": "Você tem uma visão equilibrada das coisas, mostrando maturidade na sua abordagem, mas sem se envolver com os detalhes. Você aceita a responsabilidade quando essa lhe é oferecida, mas nem sempre sente a necessidade de controlar uma situação.",
     "Emocionalidade": 6.8,
     "Emocionalidade_desc": "Você é relativamente autoconfiante e consistente no dia-a-dia. Parece que você tem uma visão clara do que quer e não altera seu percurso facilmente pelas mudanças ao seu redor."
+  },
+  {
+    "Participante": "CATIA CARLA CALLIARI",
+    "Familia": "Arquiteto/a",
+    "Perfil": "Possui um senso de propósito aguçado | Imaginativo/a e criativo/a, porém pode parecer egocêntrico/a | Conhece a própria mente | Espera que as outras pessoas defendam a si próprias | Coloca as próprias idéias na frente das idéias de outros | Pode parecer pouco solidário/a, insensível, totalmente | Assumirá a liderança para conseguir trabalhar a sua própria",
+    "__participant_key__": "catia carla calliari",
+    "Determinação": 6.0,
+    "Determinação_desc": "Você tem um estilo de forte determinação, mas tende a agir independentemente de maneira tranqüila e de conseguir que as coisas sejam feitas sem que haja discussões ou alvoroço. Na verdade, é provável que você evite um confronto direto, o que pode causar a impressão, a algumas pessoas, de que você está desistindo.",
+    "Energia": 3.7,
+    "Energia_desc": "Você é quieto e reservado, não é particularmente sociável e prefere a companhia de pessoas que conhece. Consegue trabalhar bem em equipe, mas é preciso que você tenha tido tempo para conhecê-los.",
+    "Afetividade": 4.0,
+    "Afetividade_desc": "Sua abordagem é geralmente sensível e compreensiva, apesar de não chegar ao ponto de permitir que se aproveitem de você. Por outro lado, também não usará os demais, tratando as pessoas como indivíduos e oferendo apoio quando necessário.",
+    "Controle": 2.6,
+    "Controle_desc": "Você não exige muito dos outros, mas sua própria liberdade é muito importante. Você não gosta de ser considerado o responsável e geralmente não se prende e nem se preocupa com os detalhes. Algumas pessoas podem achar que sua abordagem é um pouco desestruturada demais, sem atenção suficiente para detalhes e para o planejamento.",
+    "Emocionalidade": 8.4,
+    "Emocionalidade_desc": "Seu estilo é razoavelmente volátil, com tendência a reagir aos eventos, mais movido pelas emoções que pela razão. Parece que as coisas lhe atingem e você claramente apresenta fortes alterações de humor. Essas mudanças podem não ser aparentes para outras pessoas, mas são certamente reais para você. Conseqüentemente, pode parecer que você assume uma visão negativa ou pessimista das coisas e que acha difícil enxergar o lado positivo. Outros poderão considerá-lo interessante ou mesmo entusiasmado, mas de alguma maneira volúvel e inconsistente."
   },
   {
     "Participante": "Ademar Hasquel",
