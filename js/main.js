@@ -3,7 +3,7 @@
 import { dataSource } from "./data.js";
 import { authenticateParticipant } from "./auth.js";
 import { getAllowedParticipants } from "./access.js";
-import { formatNumberBR, normalizeText } from "./utils.js";
+import { formatNumberBR, normalizeText, findBestMatch } from "./utils.js";
 import { renderCompetencias, renderEntrevista, renderDesenvolvimento, renderFacet, renderCarreira } from "./charts.js";
 import { GITHUB } from "./config.js";
 
@@ -164,6 +164,12 @@ async function boot() {
     facet = data.facet || [];
     career = data.career || [];
     actions = data.actions || {};
+
+    // Normaliza nomes: alinha "Participante" nos dados ao nome canônico da
+    // planilha de Acessos via fuzzy matching. Resolve casos como
+    // "Luiz Bogo Junior" no PDF FACET ↔ "Luiz Bogo Jr" na planilha.
+    normalizeParticipantNames();
+
     initLogin();
   } catch (err) {
     alert("Erro ao carregar dados: " + err.message);
@@ -171,6 +177,36 @@ async function boot() {
   } finally {
     loading.hidden = true;
   }
+}
+
+function normalizeParticipantNames() {
+  if (!access.length) return;
+  const accessRecords = access.map((r) => ({ Participante: r.PARTICIPANTE }));
+
+  // Coleta nomes únicos vindos dos datasets de dados
+  const dataNames = new Set();
+  for (const r of interviews) if (r.Participante) dataNames.add(r.Participante);
+  for (const r of facet) if (r.Participante) dataNames.add(r.Participante);
+  for (const r of career) if (r.Participante) dataNames.add(r.Participante);
+
+  // Mapeia cada nome de dataset → nome canônico em access (se houver fuzzy match)
+  const map = new Map();
+  for (const dn of dataNames) {
+    // Se já existe exato em access, mantém
+    const exact = access.find((a) => normalizeText(a.PARTICIPANTE) === normalizeText(dn));
+    if (exact) {
+      map.set(dn, exact.PARTICIPANTE);
+      continue;
+    }
+    const best = findBestMatch(dn, accessRecords, (r) => r.Participante);
+    if (best.rec) map.set(dn, best.rec.Participante);
+    else map.set(dn, dn); // sem match → mantém como está
+  }
+
+  // Aplica o mapeamento nos datasets
+  for (const r of interviews) if (map.has(r.Participante)) r.Participante = map.get(r.Participante);
+  for (const r of facet) if (map.has(r.Participante)) r.Participante = map.get(r.Participante);
+  for (const r of career) if (map.has(r.Participante)) r.Participante = map.get(r.Participante);
 }
 
 function initLogin() {
